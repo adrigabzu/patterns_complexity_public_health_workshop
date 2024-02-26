@@ -5,6 +5,10 @@
 ## Email: adrigabzu@sund.ku.dk
 ## ------------------------------------
 
+# Uncomment and execute the first time if needed
+# install.packages("pak", repos = "https://r-lib.github.io/p/pak/devel/")
+# pak::pkg_install(c("skimr", "tidyverse", "tidymodels", "corrplot", "ranger", "treeshap", "shapviz"))
+
 # Load required libraries
 library(tidyverse)
 library(skimr)
@@ -15,6 +19,8 @@ library(treeshap)
 library(shapviz)
 
 ########################## READ THE DATA ############################
+
+# Original source https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
 # Read the data from web
 url <- "https://raw.githubusercontent.com/AshNumpy/Sleep-Health-ML-Project/main/Datasets/cleaned-dataset.csv"
 data <- read_csv(url)

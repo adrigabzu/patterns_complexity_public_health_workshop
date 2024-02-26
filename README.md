@@ -1,11 +1,13 @@
-# Workshop on Pattern Recognition in a dataset
+# Pattern Recognition in Public Health
 
-Held in the afternoon of the 27th of February 2024 as part of the PhD course: [Introduction to Complex Systems Approaches in Public Health](https://phdcourses.dk/Course/106362)
+Workshop in the afternoon of the 27th of February 2024 as part of the PhD course: [Introduction to Complex Systems Approaches in Public Health](https://phdcourses.dk/Course/106362)
 
 ## Introduction
-By the end of the afternoon session, participants will have hands-on experience using R or Python to apply simple approaches for pattern recognition on a Public Health dataset. No prior programming experience is required but R (+ Rstudio recommended) or Python (+ VScode recommended) will be needed to run the necessary code.
+By the end of this session, participants will be exposed to practical examples in R and Python for pattern recognition on a sythetic. No prior programming experience is required but R (+ Rstudio recommended) or Python (+ VScode recommended) will be needed to run the necessary code.
 
-The instructions are simple, download this repository and try to run the provided code. Once you achieve this, explore which patterns you notice at the different steps. 
+The instructions are simple, download this repository and try to run the provided code in the script of your programming language of choice. Both R and Python scripts are provided and have the same steps and similar methods. Once you achieve this, explore which interesting patterns you recognise with the different methods implemented.
+
+Take this opportunity to change variables or parameters to explore the impact of different choices in the methods. If you are not familiar with the methods, you can check them online or ask about it. If you are familiar with the methods, take the time to explore new variables and how that changes your question and results.
 
 ## Data
 The data is a synthetic dataset from a Kaggle competitions with the title [Sleep Health and Lifestyle Dataset](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset). Follow the link for information on the variables.
