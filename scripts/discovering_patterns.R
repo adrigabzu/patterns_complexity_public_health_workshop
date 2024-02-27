@@ -9,6 +9,9 @@
 # install.packages("pak", repos = "https://r-lib.github.io/p/pak/devel/")
 # pak::pkg_install(c("skimr", "tidyverse", "tidymodels", "corrplot", "ranger", "treeshap", "shapviz"))
 
+# If that failed try the following
+# install.packages(c("skimr", "tidyverse", "tidymodels", "corrplot", "ranger", "treeshap", "shapviz"))
+
 # Load required libraries
 library(tidyverse)
 library(skimr)
@@ -64,7 +67,7 @@ skim(data_encoded)
 data_encoded %>%
   scale() %>%
   as.matrix() %>%
-  heatmap(col = viridis::viridis(100))
+  heatmap()
 
 # Correlation plot of the variables
 data_encoded %>%
