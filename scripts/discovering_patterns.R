@@ -6,7 +6,7 @@
 ## ------------------------------------
 
 # Uncomment and execute the first time if needed
-# install.packages("pak", repos = "https://r-lib.github.io/p/pak/devel/")
+# install.packages("pak")
 # pak::pkg_install(c("skimr", "tidyverse", "tidymodels", "corrplot", "ranger", "treeshap", "shapviz"))
 
 # If that failed try the following
@@ -116,16 +116,16 @@ model_spec <- rand_forest(mode = "regression", trees = 100) %>%
 rec_model <- recipe(`Quality of Sleep` ~ ., data = data_train)
 
 # DEFINE WORKFLOW
-wkflow <- workflow() |>
-  add_model(model_spec) |>
+wkflow <- workflow() %>%
+  add_model(model_spec) %>%
   add_recipe(rec_model)
 
 # TRAINING MODEL
-model_fit <- wkflow |>
+model_fit <- wkflow %>%
   fit(data = data_train)
 
 # ASSESS MODEL ON TEST DATA
-preds <- model_fit |>
+preds <- model_fit %>%
   augment(new_data = data_test)
 
 # Evaluate the model

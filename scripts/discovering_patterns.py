@@ -80,10 +80,10 @@ pca = PCA(n_components=2)
 data_pca = pca.fit_transform(data_scaled)
 
 # Cluster the data with HDBSCAN
-# clusterer = HDBSCAN(min_cluster_size=10)
+clusterer = HDBSCAN(min_cluster_size=10)
 
 # Cluster the data with KMeans
-clusterer = KMeans(n_clusters=3)
+# clusterer = KMeans(n_clusters=3)
 clusterer.fit(data_scaled)
 
 # Summary of clustering
