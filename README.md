@@ -18,8 +18,13 @@ The data is a synthetic dataset from a Kaggle competitions with the title [Sleep
 To work with your current installation of R (and Rstudio), uncomment the first lines in the scripts to install the necessary packages. I suggest to install the [pak library](https://pak.r-lib.org/) first to manage the installation of the other packages. You can install it with the following command:
 
 ```R
-install.packages("pak", repos = "https://r-lib.github.io/p/pak/devel/")
+install.packages("pak")
 pak::pkg_install(c("skimr", "tidyverse", "tidymodels", "corrplot", "ranger", "treeshap", "shapviz"))
+```
+Alternatively you can use:
+
+```R
+install.packages(c("skimr", "tidyverse", "tidymodels", "corrplot", "ranger", "treeshap", "shapviz"))
 ```
 
 ### Python users
