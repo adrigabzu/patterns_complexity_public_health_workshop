@@ -1,0 +1,1001 @@
+Person ID,Sex,Age,Occupation,Location,Physical Activity Level,Stress Levels,BMI,Depressive symptoms,Sleep duration,Sleep problems
+1,M,42,construction worker,loc003,7.0,8,20.6,0,8.0,0
+2,F,24,nurse,loc001,10.0,5,24.5,0,7.3,0
+3,M,68,banker,loc010,3.1,4,27.2,0,10.0,0
+4,M,24,office worker,loc002,10.0,5,25.3,0,4.5,0
+5,M,76,office worker,loc008,2.4,3,32.9,0,7.1,1
+6,M,54,nurse,loc003,4.9,7,29.5,0,6.3,0
+7,M,37,construction worker,loc010,7.2,10,28.0,0,4.0,1
+8,F,62,banker,loc006,5.5,4,24.3,0,7.1,0
+9,F,75,banker,loc001,2.9,4,25.2,0,7.3,0
+10,F,54,academic,loc009,5.4,5,26.8,0,6.7,0
+11,M,45,academic,loc004,8.1,7,26.7,0,6.8,0
+12,M,63,construction worker,loc008,3.0,5,20.7,0,9.2,0
+13,M,55,construction worker,loc003,5.9,6,18.1,0,6.1,0
+14,M,48,banker,loc008,4.6,8,24.7,0,4.0,0
+15,M,50,construction worker,loc005,6.6,5,27.0,0,6.9,0
+16,F,26,nurse,loc003,9.7,6,21.8,0,8.3,1
+17,F,57,nurse,loc007,4.5,6,23.1,0,4.0,0
+18,F,16,nurse,loc006,6.3,4,25.5,0,8.5,1
+19,M,71,office worker,loc007,3.2,4,33.0,0,5.7,1
+20,M,75,banker,loc006,4.4,1,26.4,0,7.3,0
+21,F,43,nurse,loc010,7.9,6,30.5,1,9.5,1
+22,M,75,nurse,loc009,2.4,5,32.5,0,8.4,1
+23,M,19,academic,loc010,6.0,5,24.1,0,8.4,0
+24,M,58,academic,loc008,5.0,5,26.9,0,6.1,0
+25,M,26,office worker,loc001,10.0,4,28.8,0,5.1,0
+26,M,31,banker,loc007,9.7,7,24.7,0,6.6,0
+27,F,73,banker,loc001,2.5,6,26.7,0,8.3,1
+28,M,48,nurse,loc005,7.1,7,26.9,0,9.0,0
+29,F,73,office worker,loc008,1.0,3,25.7,0,7.1,0
+30,M,28,banker,loc002,9.5,7,20.4,0,6.6,0
+31,M,80,construction worker,loc003,3.3,3,25.1,0,5.9,0
+32,M,24,office worker,loc008,9.3,5,30.4,0,6.2,0
+33,F,65,construction worker,loc008,4.3,6,24.6,0,6.4,0
+34,M,26,office worker,loc001,10.0,7,28.2,0,6.5,1
+35,M,28,nurse,loc010,9.5,7,27.3,0,6.6,1
+36,F,21,student,loc009,9.6,5,25.1,0,7.4,0
+37,M,48,banker,loc001,4.6,8,22.9,0,7.2,0
+38,M,67,construction worker,loc004,2.3,5,24.7,0,8.2,1
+39,F,36,academic,loc006,8.6,8,25.2,0,10.0,0
+40,M,29,student,loc009,10.0,8,18.3,0,7.1,0
+41,M,46,academic,loc010,6.2,8,19.0,0,4.2,0
+42,F,55,nurse,loc008,7.2,7,27.3,0,5.0,1
+43,F,41,nurse,loc002,6.5,10,24.3,0,5.1,1
+44,M,55,banker,loc009,5.7,6,22.9,0,6.4,0
+45,M,81,construction worker,loc004,3.6,1,23.4,0,7.7,1
+46,F,36,nurse,loc009,10.0,8,19.9,0,4.9,0
+47,M,48,banker,loc010,8.5,7,24.9,1,5.8,1
+48,F,20,academic,loc005,8.1,5,16.8,0,5.6,0
+49,F,32,office worker,loc006,9.7,9,21.5,0,4.0,0
+50,F,43,academic,loc005,6.8,8,25.4,0,5.2,0
+51,M,17,academic,loc003,6.5,6,20.2,0,7.1,1
+52,F,64,office worker,loc002,2.8,5,31.4,0,6.5,1
+53,M,77,construction worker,loc007,2.8,3,26.2,0,5.4,0
+54,M,41,banker,loc007,8.4,6,23.9,0,6.5,0
+55,F,31,construction worker,loc002,9.7,8,19.9,0,9.7,0
+56,M,50,construction worker,loc003,7.1,7,17.5,0,7.6,0
+57,F,36,academic,loc003,8.8,9,26.8,0,7.0,0
+58,F,62,academic,loc004,3.6,7,21.1,0,6.2,1
+59,F,15,construction worker,loc003,8.2,5,31.6,0,6.9,0
+60,M,37,construction worker,loc003,7.1,9,24.0,0,5.4,0
+61,M,77,nurse,loc001,2.3,4,29.6,0,8.9,1
+62,M,66,nurse,loc007,3.5,6,28.6,0,9.5,0
+63,M,64,construction worker,loc007,4.6,4,28.2,0,8.2,1
+64,M,38,banker,loc006,7.1,10,22.8,0,5.6,0
+65,F,52,academic,loc005,4.9,9,25.2,0,5.4,0
+66,F,36,office worker,loc003,9.1,10,22.7,0,7.3,0
+67,M,28,banker,loc007,10.0,6,30.0,0,5.2,0
+68,M,40,banker,loc001,6.8,8,20.3,0,7.0,1
+69,M,34,office worker,loc009,8.0,9,20.5,0,9.8,0
+70,M,40,construction worker,loc008,7.5,8,26.4,0,5.6,0
+71,F,60,construction worker,loc008,4.9,5,27.7,0,5.3,0
+72,M,80,banker,loc009,1.4,2,29.4,0,6.6,1
+73,M,63,academic,loc004,3.3,6,23.0,0,6.9,0
+74,F,66,construction worker,loc008,1.6,3,23.2,0,8.0,0
+75,F,68,nurse,loc009,2.4,4,27.4,0,6.2,0
+76,F,39,office worker,loc006,8.0,7,27.7,0,6.6,0
+77,M,75,nurse,loc008,3.6,3,26.9,0,7.9,0
+78,M,66,nurse,loc009,4.5,7,21.1,0,6.5,1
+79,M,31,student,loc007,10.0,8,19.3,0,6.9,0
+80,M,61,office worker,loc002,4.1,5,28.3,0,7.0,0
+81,M,38,nurse,loc003,8.7,9,24.8,0,7.6,0
+82,M,55,banker,loc009,6.5,5,18.2,0,8.3,0
+83,F,44,banker,loc008,5.6,8,28.0,0,5.2,1
+84,M,58,construction worker,loc005,4.3,6,28.5,0,7.4,0
+85,F,43,office worker,loc002,6.7,8,28.7,0,6.4,1
+86,F,30,construction worker,loc007,10.0,6,23.8,0,6.8,0
+87,M,32,student,loc004,9.2,9,26.3,0,7.0,0
+88,M,80,academic,loc006,2.3,4,29.6,0,6.5,1
+89,F,64,office worker,loc004,6.0,5,29.8,0,6.2,0
+90,F,17,nurse,loc002,4.5,8,26.5,0,7.0,0
+91,M,36,academic,loc009,8.6,7,15.5,0,6.7,0
+92,M,49,nurse,loc004,7.6,7,20.1,0,5.3,0
+93,M,60,banker,loc001,2.2,5,24.7,0,6.7,1
+94,M,58,office worker,loc006,4.0,6,23.0,0,4.4,0
+95,F,17,student,loc009,5.8,6,21.6,0,7.1,0
+96,F,57,nurse,loc008,4.5,6,26.2,0,9.9,1
+97,M,37,academic,loc001,8.5,8,27.8,0,9.9,0
+98,F,40,construction worker,loc010,6.4,10,29.2,0,6.6,0
+99,M,81,office worker,loc008,1.6,1,25.1,0,7.0,1
+100,M,39,construction worker,loc009,8.9,8,21.7,0,7.0,0
+101,F,67,academic,loc002,5.1,5,23.2,0,5.9,0
+102,F,60,office worker,loc009,3.9,7,26.0,0,6.6,1
+103,F,70,nurse,loc006,2.8,5,24.3,0,5.2,1
+104,M,50,office worker,loc006,6.4,6,29.5,0,5.3,0
+105,F,73,academic,loc003,2.8,4,26.8,0,6.0,1
+106,F,56,academic,loc008,5.7,7,28.5,0,6.4,0
+107,M,16,office worker,loc002,8.4,3,24.0,0,5.1,0
+108,M,64,construction worker,loc007,2.0,7,20.3,0,7.4,0
+109,F,29,student,loc001,10.0,6,19.2,0,6.8,0
+110,M,31,nurse,loc010,9.6,7,26.4,0,5.9,0
+111,F,17,banker,loc007,7.5,6,21.0,0,8.2,0
+112,F,77,academic,loc008,1.1,3,27.7,0,4.7,1
+113,M,43,construction worker,loc008,7.8,8,23.5,0,7.0,0
+114,F,48,office worker,loc001,6.7,6,23.1,0,9.9,0
+115,F,29,banker,loc004,10.0,7,20.6,0,8.9,0
+116,M,21,nurse,loc009,10.0,7,19.8,0,6.8,0
+117,M,49,academic,loc003,6.1,7,26.2,0,8.9,1
+118,M,78,construction worker,loc004,2.1,2,30.0,0,6.7,1
+119,F,82,office worker,loc003,1.0,4,24.2,0,4.2,0
+120,M,77,nurse,loc005,1.2,5,25.2,0,7.0,0
+121,M,54,office worker,loc004,6.3,7,27.6,0,10.0,0
+122,M,76,banker,loc001,2.1,4,22.6,0,6.9,1
+123,F,47,nurse,loc003,7.1,8,21.4,0,7.0,0
+124,F,48,nurse,loc005,5.6,8,28.6,0,7.9,1
+125,F,51,construction worker,loc007,6.0,6,22.7,0,8.2,1
+126,F,15,construction worker,loc003,6.0,5,29.5,0,4.7,0
+127,M,76,office worker,loc002,2.8,4,25.2,0,6.3,1
+128,F,45,construction worker,loc004,6.1,9,22.1,0,7.4,0
+129,M,71,office worker,loc001,3.1,4,18.0,0,6.6,1
+130,F,79,office worker,loc009,1.9,4,24.0,0,6.6,0
+131,M,53,banker,loc002,6.4,8,27.7,0,5.7,0
+132,M,80,banker,loc002,1.5,2,23.5,0,7.3,1
+133,F,24,construction worker,loc004,8.6,5,22.2,0,7.6,0
+134,F,34,academic,loc002,9.9,7,21.8,0,8.0,0
+135,F,85,office worker,loc003,1.0,1,34.1,0,8.0,1
+136,F,53,construction worker,loc009,5.7,8,33.5,0,6.7,1
+137,M,48,academic,loc004,6.9,7,27.5,0,10.0,0
+138,F,72,office worker,loc010,2.3,3,23.6,0,4.0,0
+139,M,22,nurse,loc002,10.0,5,30.9,0,9.4,0
+140,M,85,nurse,loc005,1.0,1,24.6,0,8.6,1
+141,M,85,academic,loc004,1.5,1,24.4,0,5.7,0
+142,F,41,office worker,loc005,7.1,8,25.3,0,8.1,1
+143,M,73,construction worker,loc007,4.1,4,21.3,0,4.0,0
+144,F,24,office worker,loc002,8.6,8,16.4,0,8.5,1
+145,F,50,academic,loc002,6.1,7,29.8,0,6.5,0
+146,M,25,nurse,loc003,9.9,6,21.3,0,8.0,0
+147,M,62,construction worker,loc009,2.7,6,18.4,0,6.2,1
+148,F,47,banker,loc004,7.1,6,25.4,0,7.1,0
+149,F,29,student,loc003,9.1,6,22.7,0,7.0,0
+150,F,28,office worker,loc007,10.0,9,23.3,0,8.7,0
+151,M,64,office worker,loc003,2.8,6,30.7,0,6.2,1
+152,M,69,nurse,loc010,4.2,3,27.3,0,5.9,0
+153,F,32,office worker,loc003,8.8,7,22.9,0,6.9,0
+154,M,50,academic,loc007,6.1,8,24.9,0,7.0,1
+155,M,19,academic,loc008,9.0,5,24.7,0,5.7,0
+156,F,81,office worker,loc008,2.0,4,21.7,1,9.2,1
+157,M,36,office worker,loc008,7.7,9,22.1,0,6.4,0
+158,F,64,office worker,loc002,2.5,6,25.2,0,7.2,1
+159,M,74,office worker,loc003,2.6,3,22.5,0,8.5,1
+160,M,66,academic,loc001,3.7,5,27.4,0,6.5,0
+161,F,71,nurse,loc005,3.1,3,28.0,0,8.3,0
+162,F,29,student,loc009,10.0,5,21.2,0,6.8,1
+163,F,58,academic,loc005,5.9,6,18.7,0,10.0,1
+164,F,53,academic,loc010,6.1,4,26.1,0,8.0,0
+165,M,63,academic,loc009,3.3,8,27.6,1,5.8,1
+166,F,65,office worker,loc005,3.5,5,20.7,0,8.1,0
+167,M,25,academic,loc007,9.8,6,28.5,0,6.4,0
+168,F,69,office worker,loc001,4.2,4,27.5,0,5.3,1
+169,M,66,nurse,loc003,4.7,4,33.4,0,6.4,1
+170,F,41,construction worker,loc010,8.1,7,21.4,0,7.9,0
+171,M,32,office worker,loc004,10.0,8,23.8,0,7.5,0
+172,M,64,academic,loc003,3.4,6,33.1,0,5.4,1
+173,F,84,construction worker,loc009,1.7,3,29.1,0,8.2,0
+174,M,77,nurse,loc005,2.7,3,25.2,0,5.1,1
+175,F,48,academic,loc006,5.3,7,26.9,0,8.8,0
+176,M,21,nurse,loc006,8.2,5,27.7,0,8.9,0
+177,F,65,construction worker,loc005,1.9,6,31.8,0,7.3,0
+178,M,52,nurse,loc001,5.5,7,27.5,0,7.5,1
+179,F,25,office worker,loc009,10.0,7,24.2,0,6.1,0
+180,F,80,office worker,loc001,1.5,3,20.1,0,7.8,1
+181,M,51,construction worker,loc008,7.1,6,23.0,0,8.6,1
+182,F,44,banker,loc005,6.2,7,30.5,0,8.5,0
+183,F,21,construction worker,loc002,7.7,5,29.4,0,6.4,0
+184,M,52,banker,loc006,6.2,4,20.7,0,7.9,1
+185,M,69,construction worker,loc007,3.1,5,30.5,0,6.5,0
+186,M,44,construction worker,loc003,7.8,8,25.0,0,4.7,1
+187,M,35,nurse,loc007,9.0,8,18.1,0,8.8,1
+188,F,54,banker,loc004,5.4,6,23.4,0,7.6,0
+189,M,17,banker,loc003,7.9,3,25.4,0,7.1,0
+190,F,23,nurse,loc009,10.0,7,32.3,0,8.6,0
+191,F,83,construction worker,loc009,1.0,2,27.3,0,5.2,0
+192,M,27,office worker,loc003,10.0,6,23.8,0,7.6,1
+193,F,76,nurse,loc001,2.1,5,24.6,0,7.4,0
+194,M,31,student,loc004,8.1,7,29.1,0,8.2,0
+195,M,23,banker,loc008,10.0,6,20.7,0,5.5,0
+196,F,21,construction worker,loc009,9.7,7,25.4,0,7.1,0
+197,M,35,academic,loc001,5.8,10,24.5,0,8.5,0
+198,M,73,office worker,loc003,1.0,3,19.3,0,6.9,1
+199,F,35,academic,loc004,10.0,9,28.9,0,7.9,0
+200,M,59,construction worker,loc004,4.4,7,23.9,0,7.4,0
+201,F,71,office worker,loc004,1.9,5,25.5,0,8.1,1
+202,F,67,construction worker,loc004,4.1,5,31.1,1,9.9,1
+203,F,66,nurse,loc004,3.0,7,27.3,0,5.4,0
+204,F,49,banker,loc005,6.0,8,15.0,0,5.5,0
+205,M,31,academic,loc010,10.0,8,27.0,0,5.0,0
+206,F,39,banker,loc009,7.1,10,26.8,0,7.2,0
+207,F,19,office worker,loc007,7.9,3,25.0,0,8.7,1
+208,F,35,office worker,loc005,9.9,7,25.5,0,6.1,0
+209,F,21,academic,loc001,9.2,7,25.5,0,9.1,0
+210,F,46,nurse,loc009,7.8,8,18.5,0,5.2,0
+211,M,60,banker,loc010,5.3,6,21.1,0,8.0,1
+212,M,43,banker,loc002,7.0,7,27.0,0,4.9,0
+213,M,27,banker,loc002,10.0,7,26.1,0,8.0,0
+214,F,57,banker,loc002,3.5,8,32.6,0,6.5,1
+215,F,69,office worker,loc007,2.7,6,25.4,0,8.3,1
+216,F,74,construction worker,loc009,2.7,5,28.4,0,7.3,1
+217,M,34,banker,loc006,6.5,8,27.6,0,6.3,1
+218,F,30,banker,loc005,8.9,7,22.3,0,7.4,0
+219,F,63,nurse,loc005,3.2,5,22.4,0,7.5,1
+220,M,31,nurse,loc002,8.5,9,20.8,0,7.1,1
+221,M,25,academic,loc005,9.9,7,21.2,0,5.6,0
+222,M,38,construction worker,loc007,8.3,7,29.0,0,6.4,0
+223,F,20,construction worker,loc008,8.3,5,28.1,0,9.5,1
+224,M,70,office worker,loc008,1.8,5,24.6,0,6.8,0
+225,M,27,student,loc009,9.6,6,25.7,0,4.9,0
+226,M,57,office worker,loc007,4.3,7,21.2,0,5.0,0
+227,F,59,office worker,loc010,5.6,4,20.0,0,8.7,0
+228,M,81,nurse,loc002,2.0,2,20.4,0,7.8,1
+229,F,23,office worker,loc007,8.3,6,23.8,0,10.0,1
+230,M,26,banker,loc004,10.0,8,23.9,0,5.9,0
+231,M,33,construction worker,loc004,8.1,10,29.8,0,7.9,0
+232,F,68,office worker,loc006,3.3,4,27.5,0,9.2,0
+233,M,69,banker,loc002,3.7,4,18.0,0,5.3,1
+234,M,15,academic,loc004,6.4,4,24.0,0,8.7,1
+235,F,22,nurse,loc004,8.8,7,23.6,0,6.5,0
+236,M,22,student,loc006,10.0,6,27.0,0,7.8,0
+237,F,58,construction worker,loc005,6.5,5,24.0,0,9.8,1
+238,F,71,academic,loc008,1.9,5,19.6,0,7.5,1
+239,F,37,nurse,loc007,6.6,7,19.7,0,8.3,0
+240,F,27,banker,loc005,10.0,8,27.5,0,6.0,1
+241,M,31,academic,loc005,10.0,9,26.3,0,6.4,0
+242,F,29,academic,loc008,8.3,8,19.4,0,7.2,0
+243,M,85,academic,loc004,1.0,1,28.6,0,4.8,0
+244,F,31,academic,loc005,10.0,6,22.8,0,7.5,0
+245,M,42,construction worker,loc003,7.9,8,29.8,0,6.1,1
+246,F,72,nurse,loc009,2.6,6,23.9,0,4.0,0
+247,M,43,banker,loc006,6.5,7,28.1,0,5.7,0
+248,F,54,construction worker,loc007,5.3,8,28.9,0,6.7,0
+249,M,69,construction worker,loc008,5.3,5,26.1,0,6.7,0
+250,M,23,student,loc003,9.7,5,28.8,0,8.6,0
+251,M,34,student,loc001,9.0,7,16.2,0,7.3,0
+252,F,79,academic,loc003,3.9,4,27.0,0,6.4,1
+253,M,46,banker,loc008,7.8,6,15.9,0,6.8,0
+254,F,50,banker,loc007,5.4,7,23.9,0,5.9,0
+255,F,36,office worker,loc007,8.9,8,23.3,0,6.6,1
+256,F,83,office worker,loc003,1.0,2,33.7,0,7.1,0
+257,F,26,banker,loc006,10.0,5,23.8,0,6.2,0
+258,F,30,banker,loc004,7.6,9,30.6,0,8.1,1
+259,M,34,nurse,loc003,7.8,10,25.1,0,6.6,0
+260,M,85,office worker,loc006,1.0,2,23.0,0,6.8,0
+261,M,40,construction worker,loc006,8.7,8,34.9,0,4.0,0
+262,F,67,nurse,loc005,3.4,7,27.7,0,7.3,0
+263,F,67,office worker,loc005,3.1,5,31.3,0,8.9,1
+264,M,81,academic,loc003,2.6,4,27.4,0,8.9,1
+265,F,58,banker,loc002,5.6,5,22.9,0,6.2,0
+266,M,35,nurse,loc010,7.7,10,26.8,0,6.3,0
+267,F,41,office worker,loc004,7.7,7,28.8,0,8.2,1
+268,M,25,office worker,loc001,10.0,7,24.4,0,7.8,0
+269,M,58,office worker,loc010,5.1,6,31.1,0,7.0,1
+270,M,43,academic,loc008,8.1,8,19.8,0,7.9,0
+271,F,18,academic,loc003,7.0,8,19.9,0,7.5,1
+272,F,62,banker,loc009,3.8,6,23.1,0,9.1,1
+273,F,58,academic,loc009,6.5,7,25.2,0,6.3,1
+274,F,52,office worker,loc001,4.2,8,23.4,1,9.3,1
+275,M,81,construction worker,loc009,1.1,4,30.3,0,6.0,1
+276,M,79,office worker,loc005,2.3,3,25.5,0,7.8,0
+277,F,40,academic,loc010,5.6,8,28.8,0,4.0,1
+278,M,69,office worker,loc004,1.0,5,28.1,0,8.8,0
+279,F,58,construction worker,loc007,3.8,6,25.1,0,6.9,0
+280,M,82,office worker,loc003,1.9,1,22.3,0,10.0,1
+281,M,56,construction worker,loc010,5.0,8,26.8,0,6.4,1
+282,M,42,office worker,loc001,7.9,9,22.1,0,10.0,1
+283,F,85,banker,loc006,1.0,2,29.2,0,8.9,0
+284,F,24,academic,loc004,8.9,5,20.2,0,10.0,0
+285,M,53,office worker,loc008,4.3,7,24.7,1,4.9,1
+286,F,57,academic,loc004,4.6,6,17.8,0,7.4,0
+287,F,27,office worker,loc003,9.5,6,32.8,0,4.4,1
+288,M,52,office worker,loc005,6.6,7,29.3,0,5.0,0
+289,M,67,office worker,loc003,3.5,5,30.3,0,7.4,1
+290,F,65,academic,loc004,5.2,4,16.2,0,5.2,1
+291,F,40,nurse,loc007,9.3,8,25.6,0,6.7,0
+292,F,22,academic,loc010,7.5,5,27.0,0,7.0,0
+293,M,45,academic,loc005,7.8,8,15.6,0,5.3,0
+294,F,73,academic,loc004,3.3,4,32.4,0,7.9,1
+295,F,44,nurse,loc006,5.6,9,26.8,0,6.3,0
+296,M,46,banker,loc001,6.2,6,23.6,0,7.5,0
+297,M,18,banker,loc009,9.1,4,20.7,0,10.0,0
+298,M,17,banker,loc001,7.6,5,30.4,0,5.9,1
+299,M,69,academic,loc004,1.4,5,27.8,0,5.7,0
+300,M,16,academic,loc001,5.9,4,25.5,0,9.8,1
+301,F,80,academic,loc009,3.1,2,27.6,0,8.0,0
+302,M,35,office worker,loc008,7.5,10,23.4,0,5.9,0
+303,F,77,construction worker,loc008,1.7,3,27.6,0,7.9,0
+304,M,38,construction worker,loc003,7.5,9,24.2,0,7.4,0
+305,M,36,nurse,loc008,6.4,9,20.4,0,6.1,1
+306,F,38,office worker,loc003,7.0,9,24.9,0,8.0,0
+307,M,61,construction worker,loc004,2.8,6,22.2,0,7.1,0
+308,M,58,nurse,loc001,5.0,5,26.3,0,6.9,0
+309,F,37,academic,loc009,7.1,9,24.5,1,10.0,1
+310,F,82,construction worker,loc007,1.0,2,23.6,0,4.5,0
+311,F,68,banker,loc006,3.7,4,23.8,0,8.8,0
+312,F,85,nurse,loc002,1.0,1,32.8,0,9.4,1
+313,M,54,construction worker,loc002,4.1,5,17.0,0,7.5,0
+314,F,66,nurse,loc006,3.8,4,19.9,1,9.6,1
+315,F,15,student,loc002,5.4,5,20.4,0,10.0,0
+316,F,67,banker,loc003,5.1,3,26.7,0,6.6,1
+317,F,71,office worker,loc008,4.6,5,20.1,0,8.0,0
+318,M,48,construction worker,loc004,4.9,6,25.1,0,5.2,0
+319,M,25,construction worker,loc004,10.0,6,30.1,0,8.2,0
+320,F,20,academic,loc006,8.1,6,27.9,0,6.3,0
+321,M,44,construction worker,loc005,8.2,9,19.2,0,6.6,0
+322,M,32,academic,loc005,8.1,7,29.1,0,4.6,0
+323,F,43,construction worker,loc007,6.6,7,29.0,0,7.7,0
+324,M,61,nurse,loc008,4.9,4,24.4,0,5.2,1
+325,M,58,nurse,loc003,4.8,7,31.7,0,6.5,1
+326,M,64,construction worker,loc002,5.7,4,17.9,0,8.5,1
+327,M,64,banker,loc006,5.3,5,32.0,0,7.4,0
+328,M,85,construction worker,loc007,1.7,1,27.5,0,8.3,0
+329,F,20,banker,loc004,9.8,4,24.7,0,6.2,0
+330,F,65,office worker,loc001,4.9,3,24.2,0,6.1,0
+331,F,30,banker,loc010,7.6,8,28.3,0,6.9,0
+332,M,15,construction worker,loc008,5.0,5,25.8,0,7.6,1
+333,M,68,banker,loc002,3.6,4,29.8,0,8.7,0
+334,M,41,nurse,loc001,7.1,9,35.0,0,10.0,0
+335,M,70,academic,loc003,2.7,4,28.0,0,7.0,0
+336,F,42,academic,loc002,8.1,7,30.3,0,6.4,0
+337,M,34,banker,loc002,8.8,8,22.8,0,8.0,1
+338,M,70,construction worker,loc009,2.6,2,28.0,0,5.5,1
+339,F,63,construction worker,loc010,4.2,5,27.2,0,4.3,0
+340,F,36,office worker,loc002,8.9,8,23.7,0,5.6,1
+341,F,70,construction worker,loc005,2.9,3,18.4,0,8.6,1
+342,F,54,office worker,loc009,6.2,5,19.4,0,5.7,0
+343,M,31,banker,loc005,7.9,9,24.1,0,8.0,0
+344,F,26,office worker,loc001,9.2,6,15.6,0,7.8,0
+345,F,26,student,loc004,10.0,8,21.5,0,7.2,0
+346,F,16,banker,loc005,6.2,3,28.9,0,5.6,0
+347,F,47,office worker,loc003,6.0,5,29.1,0,7.6,0
+348,F,64,office worker,loc009,4.4,7,18.1,0,7.3,0
+349,F,84,academic,loc003,1.0,1,25.1,0,7.5,0
+350,M,78,banker,loc004,2.0,3,27.6,0,7.1,0
+351,F,36,office worker,loc008,7.0,8,22.8,0,6.6,1
+352,F,83,office worker,loc007,1.0,2,22.3,0,4.9,0
+353,F,16,nurse,loc002,7.5,4,28.4,0,8.9,0
+354,F,15,academic,loc003,6.8,4,31.8,0,8.4,0
+355,F,22,construction worker,loc009,9.0,6,21.9,0,6.9,0
+356,M,27,banker,loc005,8.6,6,23.6,0,10.0,0
+357,M,32,student,loc001,10.0,7,26.3,0,7.9,0
+358,M,58,office worker,loc002,5.4,7,17.2,0,6.2,1
+359,F,21,academic,loc008,9.4,5,20.7,0,6.4,0
+360,M,46,academic,loc004,4.8,9,22.4,0,5.3,0
+361,M,71,nurse,loc010,3.3,5,17.4,0,7.0,0
+362,M,27,student,loc009,8.4,6,18.8,0,9.2,0
+363,F,40,academic,loc006,7.1,8,28.9,0,5.1,1
+364,M,40,nurse,loc002,7.7,9,28.7,0,5.3,0
+365,F,74,nurse,loc010,2.8,3,21.6,0,7.1,0
+366,F,27,office worker,loc004,9.9,5,24.3,0,8.6,0
+367,F,38,nurse,loc002,9.0,8,25.2,0,8.3,1
+368,F,26,academic,loc008,9.1,6,31.9,0,7.5,0
+369,M,26,student,loc005,8.8,8,23.3,0,4.9,0
+370,F,49,office worker,loc007,7.5,9,25.3,0,5.4,0
+371,M,26,student,loc010,9.8,8,28.2,0,6.9,0
+372,M,46,construction worker,loc003,6.6,9,22.3,0,7.0,0
+373,M,36,academic,loc004,9.0,7,28.5,0,7.2,0
+374,F,82,office worker,loc009,2.0,1,28.2,0,8.1,1
+375,M,48,academic,loc002,7.7,6,17.7,0,4.5,1
+376,F,29,construction worker,loc010,9.1,8,22.4,0,4.7,0
+377,M,30,academic,loc008,9.3,9,30.0,1,9.7,1
+378,F,16,construction worker,loc010,5.6,5,30.7,0,6.4,0
+379,M,65,construction worker,loc007,3.7,5,27.8,0,8.3,0
+380,M,67,academic,loc009,2.0,4,21.2,0,4.8,0
+381,F,82,banker,loc001,1.0,2,21.6,0,9.6,0
+382,F,46,banker,loc010,8.5,7,23.6,0,5.3,0
+383,M,48,academic,loc007,5.1,9,29.5,0,6.0,1
+384,M,73,nurse,loc008,2.2,5,23.4,0,7.0,1
+385,F,41,office worker,loc004,5.9,10,28.0,1,3.4,1
+386,F,37,academic,loc001,9.8,8,17.2,0,5.8,0
+387,F,55,banker,loc010,8.5,5,18.9,0,5.5,0
+388,F,80,nurse,loc008,1.0,2,28.0,0,8.3,0
+389,M,47,nurse,loc007,6.0,8,21.2,0,7.1,1
+390,F,30,office worker,loc007,10.0,8,20.4,0,8.0,0
+391,F,80,nurse,loc001,1.6,2,24.0,0,7.4,1
+392,F,39,nurse,loc003,8.5,8,29.8,0,4.8,0
+393,F,22,academic,loc008,9.9,5,21.2,1,1.9,1
+394,F,43,nurse,loc003,7.1,8,27.2,0,5.9,0
+395,M,85,nurse,loc007,1.4,3,20.7,0,8.0,1
+396,M,17,academic,loc004,6.2,6,15.0,0,4.0,0
+397,F,32,banker,loc006,8.0,10,24.0,0,7.9,1
+398,F,63,office worker,loc005,3.1,5,31.3,0,5.5,1
+399,M,52,office worker,loc007,5.0,8,20.0,0,5.7,0
+400,M,19,banker,loc003,7.2,7,25.3,0,5.8,0
+401,M,48,office worker,loc009,9.2,6,15.0,0,6.6,0
+402,M,46,banker,loc004,6.4,9,23.6,0,6.6,0
+403,M,15,office worker,loc004,5.6,5,21.0,0,6.2,1
+404,M,58,academic,loc003,4.8,5,26.0,0,8.2,0
+405,F,81,construction worker,loc007,1.5,3,24.5,0,6.2,1
+406,M,59,academic,loc004,3.7,6,21.2,0,9.3,1
+407,F,67,nurse,loc002,2.5,5,28.7,0,5.7,0
+408,F,34,office worker,loc010,8.3,8,25.9,0,6.3,0
+409,F,45,academic,loc009,7.0,7,22.3,0,8.3,1
+410,F,60,nurse,loc008,5.5,7,30.6,0,8.9,0
+411,M,19,student,loc001,6.8,5,30.5,0,5.4,1
+412,M,28,academic,loc006,10.0,6,21.8,0,5.7,0
+413,M,78,office worker,loc004,2.2,2,23.2,0,4.0,0
+414,M,69,construction worker,loc004,3.8,2,25.4,1,9.4,1
+415,F,72,banker,loc005,2.3,5,25.2,0,9.5,1
+416,M,37,banker,loc005,8.3,9,21.7,0,6.6,0
+417,M,69,nurse,loc006,2.0,4,27.0,0,8.7,1
+418,M,21,nurse,loc005,6.6,7,20.5,0,8.3,0
+419,F,52,academic,loc003,5.3,6,25.9,0,7.7,0
+420,F,28,banker,loc001,8.3,7,26.2,0,4.0,0
+421,F,20,office worker,loc008,7.3,6,19.1,0,8.2,0
+422,F,63,construction worker,loc003,4.2,6,27.0,0,5.9,1
+423,F,53,office worker,loc009,5.8,8,22.5,0,7.4,1
+424,F,40,construction worker,loc009,7.5,9,17.9,0,6.8,1
+425,M,16,student,loc001,7.3,4,23.0,0,7.3,0
+426,F,76,academic,loc008,1.2,2,24.5,0,4.0,0
+427,F,52,academic,loc003,4.5,8,26.6,0,6.8,0
+428,M,74,academic,loc002,1.3,3,24.8,0,7.4,0
+429,F,47,office worker,loc008,7.3,7,26.5,1,5.0,1
+430,M,73,banker,loc005,1.6,5,23.9,0,7.2,0
+431,M,23,construction worker,loc010,10.0,5,25.3,0,10.0,0
+432,F,56,construction worker,loc010,4.9,6,22.8,0,6.2,0
+433,M,62,nurse,loc007,3.8,6,30.3,0,4.9,1
+434,F,79,nurse,loc010,1.0,3,24.9,0,5.8,1
+435,M,61,nurse,loc006,4.8,6,30.8,0,5.1,1
+436,F,65,construction worker,loc010,3.0,6,24.3,0,6.9,0
+437,M,45,office worker,loc006,6.3,8,21.4,0,4.4,1
+438,M,85,banker,loc009,1.0,3,20.9,0,6.1,0
+439,F,53,office worker,loc003,6.3,6,21.8,0,5.9,1
+440,M,47,academic,loc003,7.9,6,24.2,0,8.6,0
+441,F,71,academic,loc004,4.3,4,29.2,0,9.3,0
+442,F,25,academic,loc008,10.0,6,27.1,0,10.0,0
+443,M,78,office worker,loc001,2.6,3,18.1,0,8.0,0
+444,F,35,office worker,loc006,9.1,10,26.1,0,6.3,0
+445,M,31,academic,loc008,10.0,8,26.9,0,6.3,0
+446,F,62,academic,loc007,4.8,6,20.7,0,5.4,0
+447,F,79,academic,loc009,2.0,3,32.2,0,4.2,0
+448,M,19,construction worker,loc002,8.4,5,29.2,0,6.6,0
+449,F,24,nurse,loc009,9.6,7,28.1,0,7.7,0
+450,F,18,academic,loc004,7.1,5,18.3,1,9.4,1
+451,M,24,nurse,loc006,10.0,6,28.0,0,7.1,0
+452,F,42,academic,loc004,6.6,9,32.0,0,6.3,0
+453,M,31,student,loc006,9.8,7,24.0,0,7.2,0
+454,F,70,construction worker,loc009,2.7,5,26.3,0,8.0,0
+455,F,18,academic,loc010,8.0,5,15.0,0,7.6,0
+456,M,32,nurse,loc004,8.5,9,20.4,0,7.3,0
+457,M,30,banker,loc002,8.0,7,23.4,0,7.1,1
+458,M,18,banker,loc006,6.4,6,24.5,0,7.3,0
+459,F,82,office worker,loc002,2.7,2,31.9,0,5.7,1
+460,M,28,nurse,loc001,9.2,6,24.1,1,9.8,1
+461,F,18,office worker,loc009,7.8,4,18.5,0,4.0,0
+462,M,59,construction worker,loc004,4.4,6,31.4,0,8.0,1
+463,M,47,construction worker,loc008,6.8,7,22.3,0,8.3,1
+464,F,66,academic,loc009,3.5,5,21.7,0,7.5,0
+465,M,70,office worker,loc002,4.7,2,19.3,0,6.3,0
+466,F,84,construction worker,loc007,1.0,3,28.1,0,7.1,1
+467,M,81,banker,loc008,1.9,2,25.9,0,7.2,1
+468,M,48,nurse,loc007,6.3,7,28.4,0,7.5,1
+469,M,66,banker,loc008,2.7,5,17.7,0,9.2,1
+470,M,19,academic,loc002,7.9,8,23.7,0,5.4,0
+471,F,61,nurse,loc001,5.2,5,28.7,0,7.0,0
+472,F,71,office worker,loc001,3.5,5,23.1,0,5.5,1
+473,F,21,academic,loc001,8.9,6,17.8,1,9.8,1
+474,F,69,office worker,loc005,3.2,4,25.1,0,6.5,1
+475,M,48,construction worker,loc004,6.0,8,22.7,0,5.1,1
+476,M,29,banker,loc006,9.8,6,25.0,0,6.1,0
+477,M,26,banker,loc005,9.9,7,22.7,0,6.7,0
+478,F,37,nurse,loc005,8.7,7,23.3,0,7.0,0
+479,M,54,nurse,loc006,6.6,6,23.2,0,7.9,0
+480,F,68,nurse,loc003,2.3,5,25.5,1,9.1,1
+481,M,80,nurse,loc001,1.0,1,29.6,0,5.3,1
+482,F,81,academic,loc008,1.1,3,25.4,0,7.7,0
+483,M,34,nurse,loc009,8.9,8,26.0,0,8.6,0
+484,M,22,academic,loc002,8.7,6,27.6,0,6.2,0
+485,F,25,office worker,loc007,10.0,9,18.1,0,6.9,1
+486,M,36,banker,loc009,8.6,8,18.0,0,5.8,0
+487,M,63,construction worker,loc007,4.2,5,30.4,0,6.8,0
+488,M,57,office worker,loc006,5.3,7,26.4,0,6.6,0
+489,M,62,office worker,loc003,5.2,5,25.5,0,6.1,0
+490,M,24,nurse,loc009,10.0,7,30.1,0,8.2,0
+491,M,71,construction worker,loc007,3.9,5,30.8,0,6.9,1
+492,M,15,nurse,loc003,6.2,5,21.8,0,6.2,0
+493,F,84,academic,loc010,2.3,1,20.7,0,6.8,1
+494,M,32,banker,loc001,10.0,6,22.8,0,6.0,0
+495,M,84,nurse,loc010,1.3,2,23.1,0,4.0,0
+496,F,35,banker,loc009,10.0,7,20.1,0,10.0,0
+497,M,53,academic,loc003,5.4,7,22.4,0,5.8,0
+498,F,70,nurse,loc010,2.6,4,27.5,0,8.9,0
+499,F,83,academic,loc004,3.6,1,26.1,0,8.9,1
+500,F,22,banker,loc008,9.2,6,24.8,0,6.7,0
+501,F,62,nurse,loc008,5.5,5,27.0,0,6.2,0
+502,F,84,nurse,loc004,1.0,2,27.7,0,6.7,0
+503,F,54,nurse,loc002,4.5,7,21.7,0,7.6,0
+504,M,40,nurse,loc009,8.7,8,26.3,0,8.1,0
+505,M,84,office worker,loc001,3.0,2,26.7,0,5.8,0
+506,F,18,student,loc006,9.4,5,30.6,0,9.1,0
+507,M,35,student,loc007,8.5,8,17.5,1,9.0,1
+508,F,41,academic,loc010,8.3,8,24.9,0,6.6,0
+509,M,68,banker,loc008,1.0,7,21.6,0,10.0,0
+510,F,28,student,loc008,8.7,6,27.9,0,5.3,1
+511,F,75,office worker,loc007,3.3,4,32.2,0,6.9,1
+512,M,60,office worker,loc008,4.0,7,29.4,0,6.9,1
+513,F,42,banker,loc003,6.9,7,31.8,0,7.6,1
+514,M,44,academic,loc001,6.9,9,24.5,0,4.7,1
+515,M,26,construction worker,loc004,8.6,5,19.3,0,8.0,0
+516,F,85,nurse,loc004,1.7,1,23.4,0,8.3,0
+517,M,71,construction worker,loc009,2.7,4,26.2,0,5.8,0
+518,F,82,construction worker,loc009,2.0,4,22.6,0,8.8,0
+519,F,53,construction worker,loc010,5.3,6,24.6,0,8.9,0
+520,F,41,office worker,loc005,7.9,9,25.9,0,6.8,0
+521,F,64,office worker,loc010,3.6,4,26.9,0,10.0,0
+522,M,82,construction worker,loc005,1.0,3,27.9,0,6.4,0
+523,M,60,nurse,loc005,4.9,6,26.2,0,8.6,0
+524,F,73,nurse,loc009,3.7,4,21.6,0,8.1,0
+525,M,84,academic,loc002,1.0,3,26.2,0,6.0,1
+526,M,44,banker,loc001,7.3,8,21.4,0,6.7,0
+527,M,50,office worker,loc005,5.5,7,23.5,0,6.0,0
+528,F,83,nurse,loc002,1.0,2,25.1,0,6.7,0
+529,M,52,office worker,loc007,5.5,6,26.4,0,8.3,1
+530,M,26,office worker,loc009,9.8,7,29.0,1,3.1,1
+531,F,51,academic,loc002,7.8,6,25.5,0,8.2,0
+532,M,16,construction worker,loc008,6.5,5,28.1,0,6.9,1
+533,F,61,office worker,loc009,4.8,6,26.3,0,6.4,0
+534,F,75,nurse,loc010,3.4,4,25.5,0,5.3,0
+535,F,79,banker,loc003,1.1,4,24.9,0,6.3,0
+536,F,21,student,loc008,7.7,6,21.0,0,8.7,1
+537,M,74,banker,loc003,3.2,4,17.1,0,9.4,1
+538,F,35,nurse,loc007,10.0,9,22.9,0,8.5,0
+539,M,38,office worker,loc010,7.7,10,31.6,0,8.0,1
+540,F,27,student,loc001,9.3,6,20.1,0,8.3,0
+541,M,33,office worker,loc009,8.8,8,24.1,0,4.6,1
+542,M,65,banker,loc010,4.1,6,21.3,0,9.8,0
+543,F,15,banker,loc009,6.6,6,29.8,0,4.8,0
+544,F,57,nurse,loc004,7.0,4,21.2,0,7.4,0
+545,M,21,banker,loc009,9.4,5,23.8,0,5.7,0
+546,M,27,nurse,loc006,10.0,5,23.9,0,7.9,0
+547,M,74,construction worker,loc008,4.4,4,23.3,0,5.5,1
+548,F,27,construction worker,loc007,9.8,8,21.3,0,7.9,0
+549,M,77,office worker,loc007,4.6,1,31.5,0,7.5,0
+550,M,26,academic,loc002,10.0,6,28.6,0,9.2,0
+551,M,78,office worker,loc002,1.7,2,24.5,0,7.5,0
+552,M,39,nurse,loc009,6.6,9,23.1,0,7.3,1
+553,M,77,construction worker,loc003,1.8,4,19.2,0,8.8,0
+554,M,61,academic,loc010,4.3,5,23.1,0,8.2,0
+555,F,16,construction worker,loc007,4.7,7,23.2,0,4.1,1
+556,F,49,construction worker,loc008,7.4,8,19.8,0,5.6,0
+557,M,72,construction worker,loc003,2.7,5,33.0,0,8.2,0
+558,F,21,academic,loc002,9.3,6,32.6,1,3.9,1
+559,F,60,construction worker,loc009,2.8,6,25.3,0,10.0,1
+560,M,49,nurse,loc007,8.1,6,21.2,0,7.3,0
+561,M,32,nurse,loc007,9.0,9,26.2,0,6.6,0
+562,M,60,nurse,loc004,2.9,6,29.9,0,5.6,0
+563,F,50,office worker,loc010,8.1,6,22.3,0,4.0,1
+564,M,54,academic,loc008,5.2,8,26.6,0,7.8,1
+565,M,39,academic,loc004,8.1,9,27.2,0,8.7,1
+566,M,41,banker,loc010,5.2,7,24.6,0,8.6,0
+567,M,15,student,loc007,5.4,5,28.5,0,7.2,1
+568,M,61,banker,loc002,4.3,6,21.1,0,10.0,0
+569,F,66,nurse,loc009,6.6,5,23.6,0,9.1,1
+570,F,77,construction worker,loc010,1.0,3,19.9,0,6.7,0
+571,F,34,banker,loc002,8.1,10,22.0,0,7.7,0
+572,F,74,banker,loc004,1.0,3,33.9,0,9.3,1
+573,F,80,construction worker,loc003,1.0,5,25.9,0,4.2,1
+574,F,49,construction worker,loc010,5.0,8,25.1,0,6.6,1
+575,M,77,construction worker,loc009,2.4,5,26.6,0,8.6,0
+576,M,50,academic,loc006,7.0,6,24.9,0,6.6,0
+577,M,31,academic,loc006,9.3,9,22.9,0,6.1,1
+578,F,24,academic,loc006,10.0,4,19.2,0,7.2,0
+579,F,29,nurse,loc008,9.8,9,25.6,0,6.6,0
+580,F,30,banker,loc001,8.5,7,27.8,0,7.5,0
+581,F,26,construction worker,loc003,8.0,7,29.4,0,6.9,0
+582,M,71,office worker,loc005,4.0,4,27.3,0,5.5,1
+583,M,29,nurse,loc005,8.1,6,28.6,0,4.6,0
+584,M,44,office worker,loc006,9.0,8,24.9,0,5.8,0
+585,M,41,office worker,loc003,7.4,7,20.4,0,6.4,0
+586,F,54,office worker,loc002,5.2,6,23.8,0,8.3,0
+587,M,73,nurse,loc003,2.4,4,21.6,0,6.6,1
+588,M,65,nurse,loc009,3.6,4,27.8,0,7.3,1
+589,F,83,nurse,loc005,1.0,3,26.7,0,6.5,1
+590,F,84,construction worker,loc008,1.0,2,21.7,0,5.1,1
+591,M,67,construction worker,loc007,2.7,5,32.4,0,8.0,0
+592,F,78,nurse,loc002,1.7,3,22.7,1,1.5,1
+593,F,48,construction worker,loc007,5.6,8,27.2,0,9.7,0
+594,M,47,construction worker,loc004,7.1,7,24.6,0,6.3,0
+595,F,80,construction worker,loc008,1.0,2,25.5,0,8.3,1
+596,F,57,academic,loc005,3.2,6,17.7,0,8.0,0
+597,F,27,student,loc008,9.4,5,22.9,0,6.7,0
+598,M,23,student,loc010,8.0,6,26.9,0,8.5,0
+599,F,81,construction worker,loc003,2.1,1,16.6,0,6.4,1
+600,M,68,office worker,loc007,2.8,7,22.2,0,4.2,0
+601,F,69,banker,loc002,3.7,3,27.3,0,4.9,0
+602,F,81,office worker,loc005,1.0,2,22.5,0,7.0,0
+603,M,60,banker,loc002,5.0,5,29.3,0,9.0,0
+604,M,42,construction worker,loc003,7.9,8,16.6,0,7.1,0
+605,F,19,banker,loc001,6.5,6,26.3,0,9.3,0
+606,F,20,banker,loc001,7.9,6,36.6,0,7.4,0
+607,F,59,office worker,loc007,5.7,4,33.1,0,9.2,0
+608,M,83,banker,loc009,1.7,2,29.5,0,9.3,0
+609,M,71,academic,loc001,3.4,3,29.6,1,5.1,1
+610,M,45,academic,loc006,7.5,6,25.4,0,7.1,0
+611,M,69,construction worker,loc004,2.9,6,32.3,0,7.2,0
+612,M,27,office worker,loc008,10.0,6,25.1,0,6.9,0
+613,F,23,nurse,loc007,8.8,7,21.5,0,6.9,0
+614,M,78,banker,loc001,2.7,2,28.9,0,8.6,0
+615,F,85,office worker,loc005,1.0,2,29.8,0,6.6,0
+616,F,20,banker,loc008,9.2,4,24.1,0,9.6,1
+617,M,76,office worker,loc009,4.0,2,24.7,0,6.1,1
+618,F,60,academic,loc004,5.3,5,23.9,0,6.7,0
+619,F,24,office worker,loc008,9.9,6,15.0,0,5.9,0
+620,M,69,academic,loc004,3.9,3,26.4,0,7.0,0
+621,F,65,office worker,loc003,4.3,5,27.5,0,7.6,0
+622,F,64,academic,loc005,4.1,6,25.8,0,8.0,1
+623,F,68,banker,loc010,2.9,4,19.6,0,4.0,1
+624,M,55,construction worker,loc005,4.9,6,24.4,0,5.5,0
+625,M,44,banker,loc005,7.5,9,15.0,0,7.7,0
+626,M,57,academic,loc004,7.9,3,19.9,0,7.5,0
+627,F,70,nurse,loc009,2.7,5,22.9,0,7.6,1
+628,M,49,banker,loc001,6.8,8,23.8,0,5.1,1
+629,M,31,office worker,loc008,6.7,8,26.7,1,3.6,1
+630,M,15,academic,loc004,6.3,5,22.9,0,9.0,0
+631,M,59,office worker,loc009,5.3,4,19.9,1,9.7,1
+632,F,25,nurse,loc005,10.0,5,18.4,0,5.7,0
+633,M,15,construction worker,loc007,7.1,5,19.4,0,5.3,0
+634,F,40,nurse,loc001,7.2,10,26.2,0,7.7,0
+635,M,37,banker,loc002,7.0,10,25.2,0,5.6,1
+636,M,29,banker,loc005,9.1,6,20.1,0,4.5,1
+637,F,64,construction worker,loc004,1.9,6,20.6,0,6.2,0
+638,F,73,construction worker,loc009,4.8,3,23.8,0,7.3,0
+639,M,71,construction worker,loc005,1.7,4,31.9,0,7.1,1
+640,F,66,banker,loc007,4.0,4,27.4,0,6.4,0
+641,M,16,student,loc008,5.5,6,23.0,0,4.7,0
+642,M,19,academic,loc008,7.7,6,32.1,0,7.4,0
+643,F,27,office worker,loc004,9.3,8,26.1,0,6.8,0
+644,F,55,academic,loc001,6.4,6,22.1,0,4.5,1
+645,F,82,nurse,loc002,1.0,3,27.5,0,7.0,0
+646,F,52,academic,loc001,4.2,9,20.7,0,6.2,1
+647,F,21,nurse,loc007,10.0,5,25.3,0,7.4,0
+648,M,52,office worker,loc008,6.4,6,23.8,0,6.4,1
+649,F,84,academic,loc003,2.5,2,30.1,0,6.0,1
+650,M,81,office worker,loc009,1.0,3,27.1,0,4.4,1
+651,M,32,student,loc002,9.7,8,27.4,0,5.6,0
+652,M,26,nurse,loc007,9.4,7,29.3,0,8.2,0
+653,F,32,student,loc008,10.0,8,26.1,0,9.4,0
+654,M,33,banker,loc007,9.0,9,29.1,0,6.7,0
+655,F,71,banker,loc003,3.0,7,25.6,0,8.1,1
+656,F,68,nurse,loc008,4.5,3,26.6,0,9.2,1
+657,F,20,construction worker,loc003,9.0,4,25.4,0,4.0,1
+658,M,65,construction worker,loc002,5.2,7,28.9,0,9.7,1
+659,F,61,nurse,loc006,4.2,5,25.9,0,9.3,0
+660,F,75,construction worker,loc004,3.0,3,23.6,0,8.9,1
+661,F,47,office worker,loc009,6.2,9,19.9,0,8.6,0
+662,M,62,academic,loc009,5.5,7,25.4,1,9.7,1
+663,F,20,construction worker,loc007,8.7,5,28.1,0,4.8,0
+664,F,76,construction worker,loc007,4.8,3,29.6,0,5.7,0
+665,M,47,banker,loc005,6.6,9,27.5,0,4.0,0
+666,M,55,office worker,loc009,5.5,6,26.9,0,6.9,1
+667,F,36,academic,loc010,8.5,8,26.3,0,4.9,0
+668,F,38,banker,loc001,9.9,7,18.0,0,7.0,0
+669,M,32,office worker,loc005,8.3,9,31.6,0,8.4,1
+670,M,47,nurse,loc010,8.1,5,29.6,0,6.9,0
+671,M,43,construction worker,loc008,8.1,7,22.6,0,5.5,0
+672,F,85,nurse,loc006,1.9,2,29.9,0,4.8,0
+673,F,48,construction worker,loc007,7.7,6,22.3,0,5.5,0
+674,M,82,construction worker,loc008,1.4,2,26.2,0,6.7,0
+675,M,77,nurse,loc002,2.2,3,25.9,0,9.6,1
+676,M,85,office worker,loc002,2.3,1,25.5,0,7.7,0
+677,F,66,construction worker,loc004,5.4,5,25.1,0,7.6,0
+678,F,22,banker,loc001,9.7,6,23.0,0,9.8,1
+679,M,24,banker,loc001,9.1,3,26.0,0,8.0,0
+680,F,15,office worker,loc004,6.2,5,25.4,0,8.8,0
+681,F,27,academic,loc009,9.1,7,24.9,0,6.7,0
+682,M,37,nurse,loc003,8.3,9,22.5,0,9.4,0
+683,M,82,academic,loc004,1.0,2,28.5,0,4.7,1
+684,M,51,academic,loc007,4.6,6,28.7,0,6.2,0
+685,M,79,banker,loc001,1.8,5,26.7,0,6.2,1
+686,M,59,banker,loc004,5.6,6,26.0,0,5.8,0
+687,F,19,nurse,loc007,7.6,6,21.1,0,7.8,0
+688,F,59,office worker,loc006,6.0,4,24.5,0,9.7,1
+689,F,58,office worker,loc002,4.0,6,19.6,0,7.6,1
+690,F,62,construction worker,loc006,5.5,7,28.0,0,8.1,0
+691,F,44,nurse,loc008,7.5,6,19.5,0,5.8,0
+692,M,47,office worker,loc004,6.9,7,17.5,0,8.7,0
+693,F,56,banker,loc009,6.1,7,20.3,0,7.1,1
+694,F,79,construction worker,loc004,2.8,2,20.6,0,7.6,1
+695,F,80,academic,loc001,1.0,3,30.4,0,8.8,1
+696,F,67,office worker,loc005,4.1,5,28.0,0,6.4,0
+697,F,18,nurse,loc010,6.8,4,27.0,0,6.9,0
+698,M,17,office worker,loc001,7.7,5,25.1,0,6.9,0
+699,M,65,banker,loc003,4.8,4,19.7,0,7.3,0
+700,M,54,office worker,loc009,5.6,8,23.6,0,7.7,1
+701,M,84,nurse,loc004,1.0,2,29.7,0,8.6,0
+702,F,30,nurse,loc004,10.0,7,24.4,0,6.4,0
+703,M,23,student,loc008,9.8,5,28.0,0,6.8,0
+704,M,73,banker,loc008,1.9,3,27.4,0,7.1,0
+705,M,56,nurse,loc007,4.3,7,30.5,0,9.6,1
+706,M,81,office worker,loc001,1.2,2,26.4,0,6.4,0
+707,M,26,office worker,loc004,9.2,8,23.9,0,7.8,0
+708,F,67,academic,loc009,4.9,4,29.8,0,7.4,0
+709,F,77,nurse,loc005,1.9,3,26.7,0,5.2,0
+710,F,51,construction worker,loc005,5.7,7,25.5,0,7.1,1
+711,M,65,construction worker,loc004,2.5,5,31.6,0,5.4,1
+712,F,22,nurse,loc008,10.0,7,26.3,0,8.7,0
+713,M,26,student,loc002,9.5,5,33.0,1,9.5,1
+714,F,75,nurse,loc003,1.9,6,28.9,0,5.2,1
+715,F,66,banker,loc005,4.3,5,18.5,0,9.3,1
+716,M,20,academic,loc001,8.3,6,21.8,0,9.6,0
+717,F,52,office worker,loc010,3.8,6,29.6,0,4.9,0
+718,F,84,office worker,loc003,1.0,3,23.7,0,7.8,0
+719,F,22,student,loc004,9.4,5,23.1,0,10.0,0
+720,M,85,construction worker,loc003,2.6,1,23.9,0,9.0,1
+721,M,62,academic,loc004,3.5,5,24.3,0,6.2,0
+722,F,37,banker,loc003,8.5,8,23.5,0,6.9,1
+723,M,38,academic,loc009,9.9,7,23.7,0,6.9,0
+724,F,27,academic,loc005,9.9,7,31.3,0,8.7,0
+725,M,26,office worker,loc010,10.0,5,23.1,0,10.0,0
+726,M,73,nurse,loc008,3.7,5,20.0,0,7.7,1
+727,M,68,construction worker,loc004,3.0,5,26.8,0,6.8,1
+728,M,45,nurse,loc009,7.6,8,18.7,0,5.7,1
+729,M,22,construction worker,loc002,8.0,4,27.2,0,7.6,0
+730,F,80,construction worker,loc003,1.2,4,24.1,0,7.8,0
+731,F,47,academic,loc007,6.7,5,22.0,0,4.1,0
+732,F,19,nurse,loc002,9.1,6,31.4,0,6.2,0
+733,M,50,office worker,loc009,7.9,6,24.3,0,5.3,0
+734,F,61,office worker,loc008,3.5,5,26.0,0,4.7,0
+735,F,33,banker,loc002,8.9,10,23.3,0,7.1,1
+736,F,56,banker,loc008,3.0,9,28.5,0,4.3,1
+737,F,31,banker,loc001,9.5,8,23.6,0,8.2,0
+738,F,44,banker,loc009,6.7,4,22.7,0,5.4,0
+739,F,47,banker,loc004,7.0,8,29.8,0,6.1,0
+740,F,69,office worker,loc001,4.8,6,18.9,0,4.8,1
+741,F,30,banker,loc006,9.1,9,27.1,0,7.4,1
+742,M,65,banker,loc001,4.7,4,24.7,0,7.8,1
+743,F,42,banker,loc001,9.8,7,26.5,0,8.2,0
+744,F,81,office worker,loc008,1.0,3,23.2,0,6.8,1
+745,F,50,banker,loc009,6.0,7,27.5,0,5.2,0
+746,F,24,banker,loc008,10.0,7,21.4,0,8.5,0
+747,M,61,academic,loc009,3.6,5,26.5,0,10.0,0
+748,M,39,nurse,loc009,6.5,8,17.4,0,9.5,1
+749,F,78,banker,loc010,3.2,6,22.8,0,6.6,0
+750,M,66,academic,loc007,4.4,5,22.5,0,6.7,0
+751,F,80,nurse,loc007,2.4,2,28.9,0,7.4,0
+752,M,54,construction worker,loc004,6.2,6,32.3,1,3.7,1
+753,M,62,academic,loc009,3.4,5,28.5,0,8.5,0
+754,M,44,office worker,loc006,7.4,5,23.0,0,7.9,0
+755,M,18,nurse,loc008,8.1,4,29.3,0,8.4,0
+756,M,23,construction worker,loc007,9.4,5,20.5,0,7.3,0
+757,F,38,academic,loc003,6.9,8,22.5,0,5.3,0
+758,M,54,construction worker,loc010,6.2,7,29.1,0,8.5,0
+759,M,80,academic,loc009,1.9,2,26.7,0,7.8,1
+760,F,68,construction worker,loc006,3.6,4,24.6,0,6.3,1
+761,F,34,nurse,loc010,9.2,10,20.6,0,8.0,0
+762,F,47,nurse,loc001,6.4,6,23.2,0,7.7,1
+763,F,17,academic,loc008,8.8,5,20.2,0,5.9,0
+764,F,36,banker,loc010,9.6,6,26.5,0,7.1,0
+765,F,46,office worker,loc007,6.5,6,15.0,0,9.6,0
+766,F,69,office worker,loc001,4.3,4,20.0,0,7.5,0
+767,F,79,banker,loc009,2.6,4,27.8,0,5.3,0
+768,M,59,banker,loc008,5.3,5,19.5,0,5.0,1
+769,F,76,office worker,loc003,2.1,4,33.6,0,8.4,1
+770,M,72,banker,loc005,3.3,4,19.6,0,4.0,0
+771,F,50,nurse,loc001,6.2,7,30.7,0,6.3,0
+772,M,61,banker,loc001,5.1,6,25.3,0,4.0,1
+773,M,43,office worker,loc010,7.6,7,26.1,0,8.8,0
+774,F,22,nurse,loc003,8.6,5,15.5,0,4.0,0
+775,M,81,nurse,loc005,1.7,2,25.7,0,6.5,1
+776,F,24,office worker,loc005,10.0,7,26.1,0,6.3,1
+777,M,73,banker,loc006,3.4,4,17.3,0,10.0,1
+778,F,50,office worker,loc010,6.6,7,31.8,0,6.7,0
+779,F,22,nurse,loc002,9.0,4,20.5,0,4.0,0
+780,F,34,academic,loc007,9.7,9,28.7,0,7.3,0
+781,M,73,office worker,loc007,1.6,4,22.1,0,7.6,1
+782,M,80,office worker,loc008,2.4,2,35.8,0,6.6,1
+783,M,43,nurse,loc006,7.4,7,21.5,0,8.1,0
+784,M,21,banker,loc007,10.0,7,26.3,0,8.2,0
+785,M,19,student,loc003,8.2,4,23.1,0,5.9,0
+786,M,79,construction worker,loc003,2.9,3,25.3,0,7.2,1
+787,F,38,academic,loc005,7.6,8,22.5,0,10.0,1
+788,M,55,construction worker,loc005,5.0,7,30.7,0,4.0,0
+789,M,33,nurse,loc005,8.0,9,22.8,0,8.3,1
+790,F,46,nurse,loc003,7.0,8,30.7,0,9.0,0
+791,F,38,nurse,loc007,8.8,8,20.6,0,4.0,1
+792,M,69,office worker,loc006,4.2,4,23.9,0,8.1,0
+793,M,51,nurse,loc006,5.3,6,17.9,0,7.1,0
+794,F,19,office worker,loc008,8.3,7,26.1,0,8.7,0
+795,F,37,office worker,loc003,9.8,7,27.3,0,8.0,0
+796,M,76,construction worker,loc003,1.6,6,27.3,0,9.3,0
+797,F,31,construction worker,loc004,8.7,9,19.9,0,9.2,0
+798,M,69,banker,loc009,4.2,3,30.0,0,6.7,1
+799,M,18,construction worker,loc007,7.0,6,23.8,1,2.5,1
+800,M,54,nurse,loc009,4.7,7,23.1,0,9.2,0
+801,M,30,nurse,loc004,8.9,8,24.7,0,5.8,0
+802,M,41,academic,loc007,8.2,8,19.7,0,5.3,1
+803,M,79,office worker,loc004,1.9,4,24.3,0,6.2,1
+804,M,56,academic,loc005,6.6,7,29.2,0,6.9,0
+805,M,42,banker,loc007,6.6,7,25.8,0,9.2,0
+806,F,72,construction worker,loc007,3.6,6,30.4,0,6.7,0
+807,M,67,office worker,loc003,4.4,4,24.7,0,6.4,0
+808,M,15,academic,loc004,8.6,3,20.7,0,7.7,0
+809,F,35,banker,loc007,9.2,8,26.5,0,7.8,0
+810,M,21,construction worker,loc009,8.8,6,23.5,0,5.4,0
+811,F,28,banker,loc008,9.4,7,24.2,0,6.0,0
+812,F,24,office worker,loc007,8.2,8,26.8,0,8.1,0
+813,F,39,office worker,loc002,8.1,9,27.8,0,8.0,0
+814,M,24,construction worker,loc005,10.0,6,27.1,0,6.7,0
+815,F,71,office worker,loc008,3.8,4,28.2,0,6.4,0
+816,F,22,construction worker,loc004,9.7,5,21.0,0,4.4,0
+817,F,63,nurse,loc003,1.9,6,26.1,0,5.4,1
+818,M,47,office worker,loc007,6.0,8,25.1,0,5.2,1
+819,F,21,construction worker,loc007,9.6,6,33.6,0,9.9,0
+820,M,67,banker,loc003,3.3,5,24.9,0,5.8,0
+821,M,82,construction worker,loc007,2.4,3,26.4,0,7.4,0
+822,F,44,office worker,loc003,7.0,7,24.9,0,4.0,0
+823,F,47,office worker,loc010,8.0,5,24.4,0,7.2,0
+824,M,56,academic,loc006,5.7,8,29.4,0,7.6,1
+825,F,85,banker,loc005,1.9,3,26.5,0,8.6,1
+826,M,37,banker,loc004,8.1,9,24.4,0,6.7,1
+827,M,67,construction worker,loc003,2.9,5,21.3,1,9.9,1
+828,F,22,office worker,loc007,8.2,6,23.8,0,7.2,0
+829,F,56,academic,loc006,3.8,6,29.1,0,7.0,0
+830,F,84,nurse,loc008,1.0,2,25.5,0,9.2,0
+831,M,61,banker,loc001,4.3,5,28.7,0,6.5,1
+832,F,54,office worker,loc007,4.5,7,26.6,0,8.2,0
+833,F,27,banker,loc001,10.0,5,23.6,0,8.4,0
+834,M,59,academic,loc006,4.5,6,29.2,0,7.2,1
+835,F,77,nurse,loc006,1.7,3,24.6,0,7.2,0
+836,M,15,construction worker,loc008,6.5,2,18.0,0,5.9,0
+837,M,24,student,loc004,9.2,6,20.3,0,7.2,0
+838,M,68,office worker,loc008,1.9,4,27.5,0,6.5,1
+839,F,85,nurse,loc001,1.0,4,20.1,0,6.3,0
+840,M,54,academic,loc004,5.0,6,29.1,0,5.1,0
+841,M,60,banker,loc010,3.5,5,17.7,0,7.3,1
+842,F,80,academic,loc003,1.3,4,31.0,0,6.6,1
+843,F,62,construction worker,loc008,4.6,4,24.9,0,9.0,0
+844,F,32,student,loc002,10.0,8,27.6,0,8.0,0
+845,F,73,banker,loc004,2.5,4,23.1,0,6.7,1
+846,F,44,academic,loc001,7.9,7,18.3,0,5.8,0
+847,F,45,construction worker,loc002,6.6,8,25.1,0,5.6,1
+848,M,30,office worker,loc003,6.3,8,20.2,0,9.7,0
+849,F,63,nurse,loc002,4.2,2,27.6,0,8.9,0
+850,M,63,construction worker,loc007,4.2,6,21.5,0,8.3,1
+851,M,70,office worker,loc002,4.1,4,20.9,0,4.6,1
+852,F,25,student,loc007,10.0,6,20.8,0,8.3,0
+853,F,81,nurse,loc007,2.6,3,22.1,0,6.4,0
+854,F,36,nurse,loc003,6.7,9,26.3,0,7.7,1
+855,F,23,student,loc007,9.3,6,22.9,0,8.7,0
+856,M,35,banker,loc002,9.4,9,23.0,0,7.5,1
+857,M,84,office worker,loc004,1.0,1,31.8,0,6.2,1
+858,F,58,office worker,loc003,5.6,6,23.3,0,6.4,0
+859,M,32,academic,loc009,9.4,8,20.3,0,7.7,1
+860,F,69,academic,loc008,2.2,5,27.1,0,7.6,0
+861,F,82,banker,loc010,3.2,3,24.2,0,9.3,0
+862,M,50,construction worker,loc006,6.9,8,23.3,0,7.4,1
+863,F,41,academic,loc007,8.6,9,24.3,0,8.2,0
+864,M,53,academic,loc002,6.7,6,19.5,0,7.3,0
+865,M,61,construction worker,loc008,3.8,6,23.5,0,6.2,0
+866,M,23,nurse,loc007,9.9,5,20.5,0,6.0,0
+867,F,57,nurse,loc008,4.7,6,32.7,0,6.4,0
+868,M,17,student,loc001,7.4,6,18.4,0,4.6,1
+869,F,57,banker,loc010,6.4,6,19.7,0,7.8,0
+870,M,78,construction worker,loc003,1.4,3,24.4,0,8.2,0
+871,M,18,nurse,loc010,7.7,6,29.9,0,5.3,1
+872,F,20,academic,loc006,8.6,6,32.3,0,5.6,0
+873,M,33,construction worker,loc007,9.2,8,30.4,0,5.7,1
+874,M,40,academic,loc009,8.9,9,25.0,0,5.9,1
+875,F,66,office worker,loc003,6.0,5,29.0,0,7.2,0
+876,F,26,office worker,loc007,8.7,7,23.6,0,7.8,0
+877,F,48,office worker,loc003,7.1,7,18.9,0,8.9,0
+878,F,41,office worker,loc001,6.5,8,18.9,0,7.7,1
+879,M,24,office worker,loc001,9.1,7,29.0,0,7.9,0
+880,F,75,nurse,loc009,3.0,5,26.0,0,7.2,1
+881,F,16,academic,loc005,7.9,4,24.5,0,8.2,0
+882,M,79,office worker,loc007,1.0,6,24.7,0,6.0,0
+883,F,20,academic,loc006,9.5,5,22.9,0,6.9,0
+884,M,39,office worker,loc004,7.0,10,18.6,1,3.6,1
+885,M,56,banker,loc005,6.8,6,27.7,0,6.9,0
+886,M,30,banker,loc002,9.4,6,23.9,0,7.2,0
+887,F,16,nurse,loc003,6.2,5,25.3,0,10.0,0
+888,F,16,nurse,loc010,7.5,4,24.1,0,8.5,0
+889,M,38,academic,loc004,8.6,9,19.0,0,9.7,0
+890,F,16,construction worker,loc003,7.4,5,23.3,0,9.5,0
+891,M,42,banker,loc006,6.8,6,23.8,0,5.3,0
+892,M,16,student,loc009,6.8,5,25.6,0,5.7,1
+893,F,30,nurse,loc009,9.3,8,24.8,0,6.6,1
+894,F,25,nurse,loc010,8.7,6,28.2,0,8.1,0
+895,M,60,banker,loc010,4.4,6,27.2,0,7.5,1
+896,F,36,office worker,loc006,9.3,7,22.2,0,6.5,0
+897,M,44,banker,loc006,7.3,9,24.6,0,7.4,1
+898,M,81,office worker,loc003,1.0,3,27.1,0,5.9,1
+899,F,20,student,loc006,7.4,5,27.8,0,4.2,1
+900,M,62,construction worker,loc007,5.6,4,28.2,0,8.1,0
+901,M,61,academic,loc004,4.0,5,31.9,0,6.4,1
+902,F,79,nurse,loc008,2.6,3,25.7,0,5.9,0
+903,M,47,nurse,loc010,7.1,7,28.8,0,8.8,0
+904,F,65,office worker,loc007,3.3,5,19.9,0,5.3,0
+905,F,67,nurse,loc005,3.5,3,25.8,0,7.2,0
+906,F,23,construction worker,loc007,8.4,7,29.1,0,6.7,0
+907,F,71,banker,loc010,3.9,5,29.7,0,8.2,1
+908,M,48,construction worker,loc007,5.0,9,28.1,0,7.7,1
+909,M,17,construction worker,loc004,9.5,3,24.2,0,9.3,0
+910,F,65,office worker,loc007,5.5,4,23.3,0,5.8,0
+911,F,42,banker,loc010,7.5,7,21.8,0,9.4,0
+912,F,51,office worker,loc006,7.0,6,29.3,0,7.5,0
+913,M,77,academic,loc005,4.1,4,18.9,0,8.8,0
+914,F,81,construction worker,loc004,1.7,2,28.1,0,5.8,0
+915,M,26,student,loc006,8.7,8,23.9,0,9.0,0
+916,F,30,student,loc004,8.8,8,22.8,0,8.7,0
+917,M,66,academic,loc005,4.4,4,23.3,0,8.1,0
+918,F,84,academic,loc008,1.3,1,19.0,0,8.6,1
+919,M,23,banker,loc006,9.5,6,23.7,0,7.8,0
+920,F,57,banker,loc005,3.9,7,27.2,0,7.3,0
+921,F,58,construction worker,loc004,4.1,5,16.4,0,6.0,0
+922,M,41,academic,loc007,7.7,7,26.0,0,6.7,0
+923,F,58,banker,loc009,2.9,6,24.6,0,5.3,1
+924,F,36,office worker,loc001,8.8,9,24.0,0,7.9,0
+925,F,16,student,loc004,6.3,6,25.2,0,6.3,1
+926,M,75,construction worker,loc007,2.9,3,22.7,0,6.8,0
+927,F,39,nurse,loc010,7.1,8,17.1,0,4.0,0
+928,M,37,banker,loc004,9.8,9,18.8,0,7.8,0
+929,M,20,construction worker,loc005,6.8,4,18.2,0,10.0,0
+930,F,48,construction worker,loc007,7.4,7,22.4,0,10.0,0
+931,M,19,student,loc006,8.0,5,22.2,0,5.3,0
+932,F,75,construction worker,loc008,5.3,3,22.7,0,8.3,0
+933,F,30,construction worker,loc007,9.8,6,19.8,0,8.2,0
+934,M,15,banker,loc009,6.6,5,19.3,0,6.0,0
+935,F,41,office worker,loc010,6.1,8,23.8,0,8.1,1
+936,M,69,construction worker,loc004,3.6,4,28.9,0,6.4,1
+937,M,31,banker,loc010,7.6,7,27.0,0,7.2,0
+938,F,50,construction worker,loc008,4.6,8,18.0,0,10.0,0
+939,F,51,office worker,loc007,6.9,7,22.1,0,4.9,1
+940,F,73,office worker,loc009,4.4,4,32.3,0,8.6,0
+941,F,57,nurse,loc002,4.5,6,32.4,0,6.8,1
+942,M,61,construction worker,loc009,3.6,5,25.1,0,6.7,1
+943,M,57,construction worker,loc004,7.1,5,26.0,0,8.0,1
+944,M,78,academic,loc008,1.0,3,25.7,0,5.9,0
+945,M,72,nurse,loc008,2.5,4,29.7,1,3.8,1
+946,M,47,academic,loc003,5.3,9,28.1,0,7.4,1
+947,F,21,nurse,loc008,8.5,6,27.9,0,8.0,0
+948,F,47,construction worker,loc009,6.0,8,21.0,0,6.5,1
+949,F,58,banker,loc007,2.9,6,20.2,0,5.8,0
+950,F,69,construction worker,loc003,3.9,5,30.3,0,8.0,0
+951,M,75,office worker,loc005,3.0,4,29.7,0,8.9,1
+952,F,23,student,loc002,10.0,6,15.1,0,7.8,0
+953,F,32,academic,loc003,8.6,7,23.5,0,9.0,1
+954,M,35,nurse,loc005,8.2,10,27.5,0,7.7,0
+955,M,66,construction worker,loc010,4.6,5,22.8,0,5.5,0
+956,M,81,nurse,loc004,1.0,4,26.0,0,5.2,0
+957,F,23,nurse,loc003,10.0,4,21.8,0,7.9,0
+958,F,49,academic,loc007,6.1,9,28.8,0,7.1,1
+959,M,52,nurse,loc003,5.9,6,26.5,0,7.0,0
+960,M,60,banker,loc006,5.7,8,26.5,0,7.8,1
+961,F,84,nurse,loc008,1.0,3,26.8,0,7.1,1
+962,F,57,nurse,loc006,4.7,5,26.6,0,8.1,0
+963,F,61,banker,loc001,5.9,7,26.4,0,7.5,1
+964,M,41,office worker,loc007,8.3,8,17.3,0,6.8,0
+965,M,66,construction worker,loc006,4.9,4,16.0,0,5.4,0
+966,F,56,banker,loc009,5.2,7,29.4,0,5.7,1
+967,M,18,academic,loc005,7.2,4,26.0,0,7.0,0
+968,F,31,construction worker,loc007,10.0,6,26.6,0,7.9,1
+969,F,68,office worker,loc006,3.8,3,26.6,0,8.7,0
+970,F,78,academic,loc006,1.0,5,25.0,0,6.2,0
+971,F,40,banker,loc001,6.6,9,27.5,0,7.5,0
+972,F,59,nurse,loc005,5.7,5,23.1,0,6.2,0
+973,F,23,student,loc002,9.7,6,15.0,0,7.4,0
+974,F,73,academic,loc010,3.5,4,26.9,0,7.4,1
+975,M,77,academic,loc002,1.6,3,30.5,0,7.8,0
+976,M,72,banker,loc009,2.3,3,30.0,0,6.8,1
+977,M,27,office worker,loc010,9.9,8,22.7,0,6.6,0
+978,F,41,academic,loc003,7.3,8,24.1,0,5.6,1
+979,M,22,banker,loc005,9.0,4,23.6,0,5.9,0
+980,M,40,office worker,loc008,7.4,8,25.4,0,8.6,1
+981,M,17,academic,loc010,8.0,4,26.1,0,7.4,0
+982,F,62,nurse,loc001,2.9,6,33.2,0,4.7,0
+983,M,63,construction worker,loc004,5.0,3,26.1,0,8.3,0
+984,M,49,construction worker,loc010,6.1,8,17.5,0,7.3,0
+985,F,64,office worker,loc006,6.7,3,25.8,0,8.0,0
+986,M,66,office worker,loc008,4.7,5,22.2,0,7.2,0
+987,M,53,office worker,loc007,5.4,9,29.5,0,6.9,0
+988,F,70,nurse,loc002,4.0,5,25.3,0,8.8,1
+989,M,34,banker,loc001,8.5,9,22.6,0,9.4,0
+990,M,67,academic,loc009,3.2,3,23.4,0,6.1,0
+991,M,74,office worker,loc003,1.2,5,16.9,0,6.2,1
+992,F,44,academic,loc006,8.5,8,29.1,0,8.7,0
+993,F,78,office worker,loc002,2.1,1,22.2,0,5.2,0
+994,M,84,nurse,loc003,1.2,3,23.2,1,9.6,1
+995,F,71,academic,loc007,1.0,5,27.3,0,4.3,1
+996,M,70,academic,loc003,2.4,4,25.3,0,8.8,1
+997,M,37,nurse,loc002,8.9,8,23.1,0,6.2,0
+998,M,82,banker,loc002,1.0,4,16.1,0,7.0,0
+999,F,53,academic,loc003,6.1,7,28.0,0,7.7,0
+1000,F,79,nurse,loc004,2.3,1,15.0,0,4.4,1
