@@ -236,7 +236,7 @@ else:
         print("Critical: Cannot align cluster labels with any DataFrame. Skipping summaries.")
         df_clusters = None
 
-
+# %%
 if df_clusters is not None:
     # Exclude noise points (-1)
     valid_clusters_df = df_clusters[df_clusters["cluster"] != -1]
@@ -254,7 +254,7 @@ if df_clusters is not None:
             print(
                 f"\n--- Cluster {c} (n={len(cluster_data)}) ---"
             )
-            skim(cluster_data.drop(columns=["cluster"])) # Drop cluster column before skimming
+            print(cluster_data.describe()) # Drop cluster column before skimming
     else:
         print("No valid clusters found (excluding noise) for summary statistics.")
 else:
@@ -373,4 +373,3 @@ else:
     print("Column 'Stress Levels' not found for SHAP dependence plot.")
 
 print("\nScript finished.")
-
