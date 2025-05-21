@@ -321,24 +321,26 @@ explainer = shap.TreeExplainer(clf)
 # For consistency with original, using full X (can be slow for large datasets)
 shap_values_rf = explainer.shap_values(X_test) # Using X_test for explainability of test predictions
 
+# %%
 # Summary plot for class “1” (has sleep problems)
 # shap_values_rf will be a list of two arrays for binary classification:
 # one for class 0, one for class 1. We usually explain class 1.
 print("\nGenerating SHAP Summary Plot (Bar)...")
 plt.figure() # Create a figure context for SHAP plot if needed
-shap.summary_plot(shap_values_rf[1], X_test, plot_type="bar", show=False)
+shap.summary_plot(shap_values_rf[:,:,1], X_test, plot_type="bar", show=False)
 plt.title("SHAP Feature Importance (Predicting Sleep Problems)")
 plt.tight_layout()
 plt.show()
 
+# %%
 print("\nGenerating SHAP Summary Plot (Dot)...")
 plt.figure()
-shap.summary_plot(shap_values_rf[1], X_test, show=False)
+shap.summary_plot(shap_values_rf[:,:,1], X_test, show=False)
 plt.title("SHAP Feature Impact (Predicting Sleep Problems)")
 plt.tight_layout()
 plt.show()
 
-
+# %%
 # Dependence plot for a key feature, e.g., 'Stress Levels' vs 'Age'
 # Ensure 'Stress Levels' and 'Age' are in X_test.columns
 if "Stress Levels" in X_test.columns and "Age" in X_test.columns:
@@ -346,7 +348,7 @@ if "Stress Levels" in X_test.columns and "Age" in X_test.columns:
     plt.figure()
     shap.dependence_plot(
         "Stress Levels",
-        shap_values_rf[1],
+        shap_values_rf[:,:,1],
         X_test,
         interaction_index="Age", # Color by 'Age'
         show=False
@@ -359,7 +361,7 @@ elif "Stress Levels" in X_test.columns:
     plt.figure()
     shap.dependence_plot(
         "Stress Levels",
-        shap_values_rf[1],
+        shap_values_rf[:,:,1],
         X_test,
         interaction_index=None,
         show=False
@@ -371,3 +373,4 @@ else:
     print("Column 'Stress Levels' not found for SHAP dependence plot.")
 
 print("\nScript finished.")
+

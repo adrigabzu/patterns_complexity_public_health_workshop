@@ -45,7 +45,13 @@ Instructions to create a conda environment are in the [conda environment file](s
 ```bash
 conda env create -f ./scripts/patterns_env.yml
 conda activate patterns_env
-pip install -r ./scripts/requirements.txt
+uv pip install -r ./scripts/requirements.txt
 ```
 
 Execution of the Python scripts, cell by cell, has been tested in [Visual Studio Code](https://code.visualstudio.com/). The script can also be exported as a Jupyter notebook.
+
+You can delete later the conda environment with the following command:
+
+```bash
+conda remove -n patterns_env --all
+```
