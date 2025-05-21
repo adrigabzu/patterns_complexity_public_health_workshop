@@ -8,5 +8,5 @@ seaborn
 scikit-learn
 lightgbm
 shap
-umap
+umap-learn
 seaborn
