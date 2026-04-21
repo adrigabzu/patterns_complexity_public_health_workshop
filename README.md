@@ -18,7 +18,7 @@ No prior programming experience is required. Both R and Python scripts follow th
 1. **Download** this repository (green *Code* button → *Download ZIP*, then unzip) or clone it with `git clone`.
 2. **Install an IDE** — see recommendations below.
 3. **Set up your environment** — see the language-specific instructions below.
-4. **Open the script** for your language and run it cell by cell. Read the comments, change parameters, and explore!
+4. **Open the script** for your language and run it cell by cell. Read the comments, change parameters, and explore! We recommend keeping `reflection_guide.md` open alongside the code to guide your analysis.
 
 ## Interactive development environments (IDEs)
 

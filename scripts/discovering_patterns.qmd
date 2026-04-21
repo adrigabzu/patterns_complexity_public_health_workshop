@@ -321,7 +321,7 @@ outcome variable. We will try two very different approaches:
 ```{r}
 #| label: seed-clustering
 
-set.seed(2025) # Ensures results are reproducible
+set.seed(2026) # Ensures results are reproducible
 features_for_clustering <- data_encoded |> select(-`Sleep problems`)
 ```
 
@@ -565,9 +565,6 @@ that builds an ensemble of decision trees sequentially, each one correcting the
 errors of the previous one. It is fast, handles missing values natively, and
 works well with tabular data.
 We use the `bonsai` package so that LightGBM plugs neatly into the tidymodels workflow.
-We set `class_weight="balanced"` so the model pays equal
-attention to both classes even if one is more frequent. However, while we gain signal
-we can affect the calibration of predicted probabilities, so this is a trade-off to be aware of.
 
 ::: {.callout-note}
 ## LightGBM and categorical features
@@ -664,12 +661,7 @@ autoplot(conf_mat_res, type = "heatmap") +
 ## A linear baseline: logistic regression {#sec-logistic}
 
 Before diving into SHAP, we train a **logistic regression** as a linear
-baseline. Logistic regression is one of the workhorses of epidemiology and
-public health: it is fast, transparent, and its coefficients have a direct
-probabilistic interpretation (log-odds).
-
-This is also a deliberate nod to **complexity science**: logistic regression
-assumes that risk factors combine *additively* and *linearly* on the log-odds
+baseline. This model assumes that risk factors combine *additively* and *linearly* on the log-odds
 scale. In a truly complex system — where variables interact non-linearly and
 effects depend on context — that assumption may not hold. Comparing the linear
 model against LightGBM reveals how much is lost (or gained) by relaxing the
@@ -682,8 +674,7 @@ deviation** of the feature.
 ```{r}
 #| label: train-lr
 
-lr_rec <- recipe(`Sleep problems` ~ ., data = train_data) |>
-  step_normalize(all_numeric_predictors())
+lr_rec <- recipe(`Sleep problems` ~ ., data = train_data)
 
 lr_spec <- logistic_reg() |>
   set_engine("glm")
@@ -734,39 +725,6 @@ comparison_df <- bind_rows(lr_eval, lgbm_eval_sub) |>
 
 print(comparison_df)
 ```
-
-```{r}
-#| label: compare-models-plot
-#| fig-width: 9
-#| fig-height: 4
-
-bind_rows(lr_eval, lgbm_eval_sub) |>
-  filter(.metric %in% c("roc_auc", "pr_auc")) |>
-  mutate(
-    .metric = recode(.metric, roc_auc = "ROC AUC", pr_auc = "PR AUC"),
-    model   = factor(model, levels = c("Logistic Regression", "LightGBM"))
-  ) |>
-  ggplot(aes(x = model, y = .estimate, fill = model)) +
-  geom_col(alpha = 0.85, width = 0.5) +
-  geom_hline(yintercept = baseline_acc, linetype = "dashed",
-             colour = "grey50", linewidth = 0.7) +
-  geom_text(aes(label = sprintf("%.3f", .estimate)),
-            vjust = -0.4, size = 3.5) +
-  facet_wrap(~.metric) +
-  scale_fill_manual(values = c("Logistic Regression" = "steelblue",
-                               "LightGBM"            = "darkorange")) +
-  scale_y_continuous(limits = c(0, 1)) +
-  labs(
-    title = "Model Comparison: Logistic Regression vs LightGBM",
-    y     = "Score",
-    x     = NULL,
-    fill  = NULL,
-    caption = "Dashed line = majority-class baseline accuracy"
-  ) +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "none")
-```
-
 
 ## Model explainability: SHAP values {#sec-shap}
 
@@ -867,7 +825,10 @@ shap_imp <- colMeans(abs(sv$S)) |>
 lr_coefs <- lr_fit |>
   broom::tidy() |>
   filter(term != "(Intercept)") |>
-  mutate(abs_coef = abs(estimate)) |>
+  mutate(
+    term = stringr::str_replace_all(term, "`", ""),
+    abs_coef = abs(estimate)
+  ) |>
   select(term, abs_coef)
 
 # Join and sort by SHAP importance
@@ -876,37 +837,8 @@ compare_imp <- shap_imp |>
   tidyr::replace_na(list(abs_coef = 0)) |>
   arrange(desc(mean_abs_shap))
 
-# Long format for faceted plot
-compare_long <- compare_imp |>
-  tidyr::pivot_longer(
-    cols      = c(mean_abs_shap, abs_coef),
-    names_to  = "source",
-    values_to = "importance"
-  ) |>
-  mutate(
-    source = recode(source,
-      mean_abs_shap = "LightGBM — Mean |SHAP value|",
-      abs_coef      = "Logistic Regression — |Coefficient| (std. units)"
-    ),
-    term = factor(term, levels = rev(compare_imp$term))
-  )
-
-ggplot(compare_long, aes(x = importance, y = term, fill = source)) +
-  geom_col(alpha = 0.85) +
-  facet_wrap(~source, scales = "free_x") +
-  scale_fill_manual(values = c(
-    "LightGBM — Mean |SHAP value|"                    = "darkorange",
-    "Logistic Regression — |Coefficient| (std. units)" = "steelblue"
-  )) +
-  labs(
-    title = "Feature Importance: LightGBM SHAP vs Logistic Regression Coefficients",
-    x     = "Importance",
-    y     = NULL,
-    fill  = NULL
-  ) +
-  theme_minimal(base_size = 10) +
-  theme(legend.position = "none",
-        strip.text = element_text(size = 9, face = "bold"))
+# Show the table
+print(compare_imp)
 ```
 
 > **What to look for:**
@@ -978,72 +910,3 @@ In this workshop you have:
 - Add or remove features from the model -- does performance improve?
 - Look at individual SHAP values for specific people in the test set to
   understand *their* prediction.
-
-
-## Student investigation: discovering hidden complexities
-
-The questions below guide you to discover patterns intentionally embedded in the
-synthetic data. Use the tools you have already built — pair plots, correlation
-matrices, cluster summaries, and SHAP plots — to answer them. Feel free to add
-new code chunks where needed.
-
-### Theme 1: Non-linear health trajectories across the lifespan
-
-Health variables rarely follow straight lines as we age. Use the **pair plots**
-or add a custom `ggplot` scatterplot to investigate age-related trends.
-
-1. **The stress peak:** Look at the relationship between `Age` and
-   `Stress Levels`. Does stress increase indefinitely with age, or does it
-   follow a different shape? At roughly what age does stress seem to peak in
-   this population?
-2. **Activity drop-off:** Examine `Physical Activity Level` across `Age`.
-   When does physical activity peak, and how does its decline compare to the
-   trajectory of stress?
-
-### Theme 2: Socio-economic spatial segregation
-
-Public health is deeply tied to where people live. Use the **Spearman
-correlation matrix** and the **summary statistics by cluster** to investigate
-geographical health determinants.
-
-3. **Occupation and wealth:** Look at the correlation between specific
-   occupations (e.g. Bankers vs. Construction workers) and location wealth.
-   Are certain professions spatially segregated by neighbourhood wealth?
-4. **The family burden:** Is there a relationship between `Family Size` or
-   `Family Income` and the average income of the location they reside in?
-   What does this tell you about the socio-economic pressures on larger
-   families in this dataset?
-
-### Theme 3: Heterogeneity of symptoms (the "depression" phenotype)
-
-The same underlying condition can manifest in drastically different ways. Use
-the **pair plots** or a custom histogram to look at the `Depressive symptoms`
-variable.
-
-5. **The sleep extremes:** Filter the data to look only at individuals with
-   depressive symptoms. What do you notice about their `Sleep duration`? Does
-   depression simply cause *less* sleep, or is the reality more complex?
-
-### Theme 4: Intersectional health pathways
-
-Different demographic groups experience health pressures differently based on
-intersecting identities.
-
-6. **Gender-specific stress manifestation:** Using the EDA tools, look at
-   `Sleep duration` specifically for females between the ages of 15 and 35.
-   How does a high `Stress Level` impact their sleep duration compared to
-   males in the same age bracket or older populations?
-
-### Theme 5: Synergistic risks and protective factors (using SHAP)
-
-Use the **SHAP beeswarm** and **dependence plots** to understand how factors
-interact to predict `Sleep problems`.
-
-7. **The protective shield of activity:** According to the SHAP beeswarm plot,
-   how does a high `Physical Activity Level` impact the likelihood of sleep
-   problems?
-8. **Compounding variables:** Generate a SHAP dependence plot for `BMI` and
-   set the interaction colour to `Stress Levels` or `Physical Activity Level`.
-   How does the model react when an individual has both a high BMI (> 30)
-   *and* high stress? Do these risks add up sequentially, or do they interact
-   to create an even higher risk of sleep problems?

@@ -1,7 +1,6 @@
 ############################################
 # Name: Discovering Patterns in Public Health Data
 # Author: Adrian G. Zucco
-# Date: 2025-05-20
 # Email: adrigabzu@sund.ku.dk
 ############################################
 
@@ -34,27 +33,27 @@
 
 # %%
 # ---- Install missing packages if not already present in the environment (run once) ----
-import subprocess
-import sys
+# import subprocess
+# import sys
 
-required_packages = {
-    "numpy": "numpy",
-    "pandas": "pandas",
-    "matplotlib": "matplotlib",
-    "seaborn": "seaborn",
-    "sklearn": "scikit-learn",
-    "umap": "umap-learn",
-    "shap": "shap",
-    "skimpy": "skimpy",
-    "lightgbm": "lightgbm",
-}
+# required_packages = {
+#     "numpy": "numpy",
+#     "pandas": "pandas",
+#     "matplotlib": "matplotlib",
+#     "seaborn": "seaborn",
+#     "sklearn": "scikit-learn",
+#     "umap": "umap-learn",
+#     "shap": "shap",
+#     "skimpy": "skimpy",
+#     "lightgbm": "lightgbm",
+# }
 
-for import_name, pip_name in required_packages.items():
-    try:
-        __import__(import_name)
-    except ImportError:
-        print(f"Installing {pip_name}...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", pip_name])
+# for import_name, pip_name in required_packages.items():
+#     try:
+#         __import__(import_name)
+#     except ImportError:
+#         print(f"Installing {pip_name}...")
+#         subprocess.check_call([sys.executable, "-m", "pip", "install", pip_name])
 
 # %% [markdown]
 # ### Loading packages
@@ -442,6 +441,7 @@ target_column = "Sleep problems"
 if target_column not in data_encoded.columns:
     raise ValueError(f"Target column '{target_column}' not found in data_encoded.")
 
+# We remove the target column from the features and keep it as the label vector y
 X = data_encoded.drop(columns=[target_column])
 y = data_encoded[target_column].astype(int)
 
@@ -461,9 +461,6 @@ print(f"Test set:     {X_test.shape[0]} rows")
 # that builds an ensemble of decision trees sequentially, each one correcting the
 # errors of the previous one. It is fast, handles missing values natively, and
 # works well with tabular data.
-# We set `class_weight="balanced"` so the model pays equal
-# attention to both classes even if one is more frequent. However, while we gain signal
-# we can affect the calibration of predicted probabilities, so this is a trade-off to be aware of.
 #
 # > **Note on categorical features:** One-hot encoding is a fundamental concept
 # > worth understanding, but advanced tree-based models like LightGBM can
@@ -474,7 +471,7 @@ print(f"Test set:     {X_test.shape[0]} rows")
 
 # %%
 clf = LGBMClassifier(
-    n_estimators=100, random_state=2025, class_weight="balanced"
+    n_estimators=100, random_state=2025, num_leaves = 7, max_depth = 3
 )
 clf.fit(X_train, y_train)
 
@@ -583,27 +580,6 @@ metrics = {
 df_metrics = pd.DataFrame(metrics).set_index("Model")
 print(df_metrics.to_string(float_format="{:.3f}".format))
 
-# %%
-fig, axes = plt.subplots(1, 2, figsize=(12, 4), sharey=False)
-
-for ax, metric in zip(axes, ["ROC AUC", "PR AUC"]):
-    bars = ax.bar(df_metrics.index, df_metrics[metric], color=["steelblue", "darkorange"])
-    ax.set_ylim(0, 1)
-    ax.set_title(metric)
-    ax.set_ylabel(metric)
-    ax.axhline(baseline_acc, color="grey", linestyle="--", linewidth=1, label="Baseline")
-    for bar in bars:
-        ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 0.01,
-            f"{bar.get_height():.3f}",
-            ha="center", va="bottom", fontsize=9,
-        )
-    ax.legend()
-
-plt.suptitle("Model Comparison: Logistic Regression vs LightGBM", fontsize=13)
-plt.tight_layout()
-plt.show()
 
 # %% [markdown]
 # ## 9. Model explainability: SHAP values
@@ -664,11 +640,9 @@ plt.show()
 # importance.
 #
 # - **LR coefficients** (standardised) tell us the *average*, *linear*
-#   log-odds contribution of each feature, assuming all other features are
-#   held constant.
+#   log-odds contribution of each feature.
 # - **Mean |SHAP|** values tell us the *average magnitude* of each feature's
-#   contribution to the LightGBM predictions — capturing non-linear and
-#   interaction effects as well.
+#   contribution to the LightGBM predictions.
 #
 # Features that rank similarly in both views are robustly important regardless
 # of modelling assumptions. Features that rank very differently hint at
@@ -724,7 +698,7 @@ plt.show()
 # >   and non-linear assumptions — these are your most reliable signals.
 # > - Features that appear only in the **SHAP chart** (high SHAP, low LR
 # >   coefficient) are likely involved in **interactions or threshold effects**
-# >   that the logistic model cannot represent.
+# >   that the logistic model may not represent.
 # > - Features that appear only in the **LR chart** may have a consistent
 # >   additive effect that the tree model spreads across correlated features.
 
@@ -791,77 +765,3 @@ plot_shap_dependence("Stress Levels", "Age")
 # - Add or remove features from the model -- does performance improve?
 # - Look at individual SHAP values for specific people in the test set to
 #   understand *their* prediction.
-
-# %% [markdown]
-# ## 10. Student investigation: discovering hidden complexities
-#
-# The questions below guide you to discover patterns intentionally embedded in
-# the synthetic data. Use the tools you have already built — pair plots,
-# correlation matrices, cluster summaries, and SHAP plots — to answer them.
-# Feel free to add new code cells where needed.
-
-# %% [markdown]
-# ### Theme 1: Non-linear health trajectories across the lifespan
-#
-# Health variables rarely follow straight lines as we age. Use the **pair plots**
-# or add a custom scatterplot to investigate age-related trends.
-#
-# 1. **The stress peak:** Look at the relationship between `Age` and
-#    `Stress Levels`. Does stress increase indefinitely with age, or does it
-#    follow a different shape? At roughly what age does stress seem to peak in
-#    this population?
-# 2. **Activity drop-off:** Examine `Physical Activity Level` across `Age`.
-#    When does physical activity peak, and how does its decline compare to the
-#    trajectory of stress?
-
-# %% [markdown]
-# ### Theme 2: Socio-economic spatial segregation
-#
-# Public health is deeply tied to where people live. Use the **Spearman
-# correlation matrix** and the **summary statistics by cluster** to investigate
-# geographical health determinants.
-#
-# 3. **Occupation and wealth:** Look at the correlation between specific
-#    occupations (e.g. Bankers vs. Construction workers) and location wealth.
-#    Are certain professions spatially segregated by neighbourhood wealth?
-# 4. **The family burden:** Is there a relationship between `Family Size` or
-#    `Family Income` and the average income of the location they reside in?
-#    What does this tell you about the socio-economic pressures on larger
-#    families in this dataset?
-
-# %% [markdown]
-# ### Theme 3: Heterogeneity of symptoms (the "depression" phenotype)
-#
-# The same underlying condition can manifest in drastically different ways. Use
-# the **pair plots** or a custom histogram to look at the `Depressive symptoms`
-# variable.
-#
-# 5. **The sleep extremes:** Filter the data to look only at individuals with
-#    depressive symptoms. What do you notice about their `Sleep duration`? Does
-#    depression simply cause *less* sleep, or is the reality more complex?
-
-# %% [markdown]
-# ### Theme 4: Intersectional health pathways
-#
-# Different demographic groups experience health pressures differently based on
-# intersecting identities.
-#
-# 6. **Gender-specific stress manifestation:** Using the EDA tools, look at
-#    `Sleep duration` specifically for females between the ages of 15 and 35.
-#    How does a high `Stress Level` impact their sleep duration compared to
-#    males in the same age bracket or older populations?
-
-# %% [markdown]
-# ### Theme 5: Synergistic risks and protective factors (using SHAP)
-#
-# Use the **SHAP beeswarm** and **dependence plots** to understand how factors
-# interact to predict `Sleep problems`.
-#
-# 7. **The protective shield of activity:** According to the SHAP beeswarm plot,
-#    how does a high `Physical Activity Level` impact the likelihood of sleep
-#    problems?
-# 8. **Compounding variables:** Generate a SHAP dependence plot for `BMI` and
-#    set the interaction colour to `Stress Levels` or `Physical Activity Level`.
-#    How does the model react when an individual has both a high BMI (> 30)
-#    *and* high stress? Do these risks add up sequentially, or do they interact
-#    to create an even higher risk of sleep problems?
