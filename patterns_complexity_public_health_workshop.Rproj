@@ -1,4 +1,4 @@
-Version: 3.0
+Version: 1.0
 
 RestoreWorkspace: Default
 SaveWorkspace: Default
@@ -9,5 +9,5 @@ UseSpacesForTab: Yes
 NumSpacesForTab: 2
 Encoding: UTF-8
 
-AutoAppendNewline: Yes
-StripTrailingWhitespace: Yes
+RnwWeave: Sweave
+LaTeX: pdfLaTeX

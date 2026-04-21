@@ -6,3 +6,5 @@ data/generate_data_v2.py
 AGENTS.md
 .vscode
 .agents/
+.Rproj.user
+.Rhistory
