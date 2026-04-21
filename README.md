@@ -79,3 +79,8 @@ Then open either:
 - `scripts/discovering_patterns.py` in VS Code or Positron can also be run cells by cell.
 
 The first code cell in both files will automatically install any missing packages.
+
+
+> [!TIP]
+> If you cannot set up R or Python to run in your computer, you can also work with the Python notebook in Google Colab by clicking the link below:
+[discovering_patterns_collab.ipynb](https://colab.research.google.com/github/adrigabzu/patterns_complexity_public_health_workshop/blob/main/scripts/discovering_patterns_collab.ipynb)
