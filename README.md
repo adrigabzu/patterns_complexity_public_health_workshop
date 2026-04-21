@@ -1,46 +1,71 @@
 # Pattern Recognition in Public Health
 
-Workshop for the course [Introduction to Complex Systems Approaches in Public Health](https://phdcourses.ku.dk/detailkursus.aspx?id=112103&sitepath=SUND)
+Workshop for the course [Introduction to Complex Systems Approaches in Public Health](https://phdcourses.ku.dk/detailkursus.aspx?id=113504&sitepath=SUND)
 
-## Introduction
-By the end of this session, participants will be exposed to practical examples in R and Python for pattern recognition on a synthetic dataset. No prior programming experience is required, but R (+ RStudio recommended) or Python (+ VS Code recommended) will be needed to run the necessary code.
+## What you will learn
 
-The instructions are simple, download this repository and try to run the provided code in the script of your programming language of choice. Both R and Python scripts are provided and have the same steps and similar methods. Once you achieve this, explore which interesting patterns you recognise with the different methods implemented.
+By the end of this session you will have worked through practical examples in both R and Python covering:
 
-Take this opportunity to change variables or parameters to explore the impact of different choices in the methods. If you are not familiar with the methods, you can check them online or ask about it. If you are familiar with the methods, take the time to explore new variables and how that changes your question and results.
+1. **Exploratory Data Analysis** — understanding variable distributions and correlations
+2. **Unsupervised learning** — finding subgroups with K-means and HDBSCAN clustering
+3. **Supervised learning** — predicting sleep problems with a LightGBM model
+4. **Model explainability** — interpreting predictions with SHAP values
 
-## Data
-These datasets are entirely artificial and were generated using Large Language Models (LLMs) to support hands-on learning in pattern recognition without exposing any real personal data.
+No prior programming experience is required. Both R and Python scripts follow the similar steps, so you can work in whichever language you prefer.
 
-- `data/families.csv`: This dataset contains information about family income and the individuals belonging to each family. The file has three columns: `Family ID`, `Family Income`, and `Person ID`. Each row represents an individual, and the `Family ID` and `Family Income` are repeated for each individual in the same family.
+## Quick start
 
-- `data/individuals.csv`: This dataset contains information about individuals, including their sex, age, occupation, location, physical activity level, stress levels, BMI, depressive symptoms, sleep duration, and sleep problems. Each row represents an individual, and the columns provide various attributes for each individual.
+1. **Download** this repository (green *Code* button → *Download ZIP*, then unzip) or clone it with `git clone`.
+2. **Install an IDE** — see recommendations below.
+3. **Set up your environment** — see the language-specific instructions below.
+4. **Open the script** for your language and run it cell by cell. Read the comments, change parameters, and explore!
 
-- `data/locations.csv`: This dataset contains information about different locations, including their population density, average income, and average wealth. Each row represents a location, and the columns provide various attributes for each location.
+## Interactive development environments (IDEs)
+
+[**Positron**](https://positron.posit.co/) is a nice choice for this workshop. It supports both R and Python in the same application and has a clean notebook-style interface for running code cell by cell.
+
+Alternatives that also work well:
+
+- **R users:** [RStudio](https://posit.co/download/rstudio-desktop/) — open the `.Rproj` file at the project root and paths will be set automatically.
+- **Python users:** [VS Code](https://code.visualstudio.com/) with the Python extension — open the `scripts/` folder and run cells interactively with `Shift+Enter`.
+
+## Files
+
+```
+├── data/
+│   ├── individuals.csv   # 1000 synthetic individuals 
+│   ├── families.csv      # Links individuals to families and family income
+│   └── locations.csv     # 10 synthetic locations and their parameters
+├── results/              # Plots and other output are saved here
+└── scripts/
+    ├── discovering_patterns.qmd    # R Quarto notebook (recommended for R users to run cell by cell)
+    ├── discovering_patterns.py     # Python script (run cell-by-cell in VS Code or Positron)
+    ├── discovering_patterns.ipynb  # Jupyter notebook version of the Python script
+    ├── patterns_env.yml            # Conda environment specification for Python dependencies
+    └── requirements.txt            # pip dependencies
+```
+
+### Dataset descriptions
+
+| File | Contents |
+|------|----------|
+| `individuals.csv` | One row per person: sex, age, occupation, location, physical activity level, stress levels, BMI, depressive symptoms, sleep duration, sleep problems |
+| `families.csv` | `Family ID`, `Family Income`, `Person ID` — links individuals to family-level income |
+| `locations.csv` | One row per location: population density, average income, average wealth |
+
+These datasets are entirely synthetic and were generated using a script with particular patterns encoded in the data. Your task is to discover these patterns using the techniques covered in the workshop!
 
 ## Setting up your environment
 
-### R users
-To work with your current installation of R (and Rstudio), uncomment the first lines in the scripts to install the necessary packages. I suggest to install the [pak library](https://pak.r-lib.org/) first to manage the installation of the other packages. You can install it with the following command:
+### R
 
-```R
-install.packages("pak")
-pak::pkg_install(c(
-  "skimr", "tidyverse", "tidymodels", "corrplot", "lightgbm", "bonsai",
-  "treeshap", "shapviz", "GGally", "umap", "dbscan", "viridis", "ggrepel"
-))
-```
-Alternatively you can use:
+Open the `.Rproj` file at the project root in RStudio or Positron. This sets the working directory automatically so all relative paths work.
 
-```R
-install.packages(c(
-  "skimr", "tidyverse", "tidymodels", "corrplot", "lightgbm", "bonsai",
-  "treeshap", "shapviz", "GGally", "umap", "dbscan", "viridis", "ggrepel"
-))
-```
+Then open `scripts/discovering_patterns.qmd` (Quarto notebook, recommended) and run cells one at a time. The first code cell in both files will automatically install any missing packages.
 
-### Python users
-Instructions to create a conda environment are in the [conda environment file](scripts/patterns_env.yml) and necessary packages in the [requirements file](scripts/requirements.txt). You can create the environment with the following commands in your terminal (assuming you are at the root directory of this repository):
+### Python
+
+Create and activate a conda environment (run once in your terminal from the project root):
 
 ```bash
 conda env create -f ./scripts/patterns_env.yml
@@ -48,10 +73,9 @@ conda activate patterns_env
 uv pip install -r ./scripts/requirements.txt
 ```
 
-Execution of the Python scripts, cell by cell, has been tested in [Visual Studio Code](https://code.visualstudio.com/). The script can also be exported as a Jupyter notebook.
+Then open either:
 
-You can delete later the conda environment with the following command:
+- `scripts/discovering_patterns.ipynb` a Jupyter notebook
+- `scripts/discovering_patterns.py` in VS Code or Positron can also be run cells by cell.
 
-```bash
-conda remove -n patterns_env --all
-```
+The first code cell in both files will automatically install any missing packages.

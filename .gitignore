@@ -1,4 +1,8 @@
 scripts/.Rhistory
+scripts/discovering_patterns.R
 data/prompt.txt
 data/generate_data.py
 data/generate_data_v2.py
+AGENTS.md
+.vscode
+.agents/
