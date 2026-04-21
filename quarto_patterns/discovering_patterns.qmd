@@ -1,0 +1,912 @@
+---
+title: "Discovering Patterns in Public Health Data"
+author: "Adrian G. Zucco"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: false
+    theme: cosmo
+    self-contained: true
+execute:
+  warning: false
+  message: false
+---
+
+## Introduction
+
+Welcome to this hands-on workshop on **pattern recognition in public health
+data**. You will work with three synthetic (artificially generated) datasets that
+describe individuals, their families, and the locations where they live. The goal
+is to discover hidden structure in these data using a combination of:
+ 
+1. **Exploratory Data Analysis (EDA)** -- looking at distributions and
+   relationships between variables.
+2. **Unsupervised learning** -- grouping similar individuals together *without*
+   any predefined labels (clustering).
+3. **Supervised learning** -- training a model to *predict* an outcome (sleep
+   problems) from the other variables.
+4. **Model explainability** -- understanding *how* a complex model makes the
+   predictions it does.
+
+No prior R experience is assumed. Each code chunk can be run one at a time;
+explanations before and after every chunk describe what is happening and why.
+
+
+## Setup: install and load packages {#sec-setup}
+
+### Installing packages
+
+The code below checks which packages are missing from your system and installs
+only those. You only need to run this **once** (or whenever you work on a new
+machine). If all packages are already installed the chunk does nothing.
+
+```{r}
+#| label: install-packages
+#| eval: false
+
+# List every package used in this notebook
+required_packages <- c(
+  "here",        # Robust file paths that work regardless of working directory
+  "skimr",       # Compact summary statistics
+  "tidyverse",   # Data wrangling and visualisation (dplyr, ggplot2, readr …)
+  "tidymodels",  # Modelling framework (recipes, rsample, parsnip, yardstick …)
+  "corrplot",    # Correlation matrix plots
+  "ranger",      # Fast random-forest implementation
+  "lightgbm",    # Gradient-boosted decision trees
+  "bonsai",      # tidymodels integration for LightGBM
+  "shapviz",     # SHAP visualisations (LightGBM computes SHAP values natively)
+  "GGally",      # Extended ggplot2 (pair plots)
+  "umap",        # UMAP dimensionality reduction
+  "dbscan",      # HDBSCAN density-based clustering
+  "viridis",     # Colour-blind-friendly palettes
+  "ggrepel"      # Non-overlapping text labels in plots
+)
+
+# Install only the packages you don't already have
+missing <- required_packages[!required_packages %in% installed.packages()[, "Package"]]
+if (length(missing) > 0) {
+  message("Installing missing packages: ", paste(missing, collapse = ", "))
+  install.packages(missing)
+}
+```
+
+::: {.callout-tip}
+## Trouble installing packages?
+If `install.packages()` fails for a package, try installing the
+[pak](https://pak.r-lib.org/) helper first (`install.packages("pak")`) and
+then run `pak::pkg_install("package_name")`. `pak` is better at resolving
+complex dependencies.
+:::
+
+### Loading packages
+
+Once installed, we **load** every package into our R session.
+
+```{r}
+#| label: load-packages
+
+library(here)         # Always-correct file paths
+library(tidyverse)    # Data manipulation and visualisation
+library(skimr)        # Summary statistics
+library(tidymodels)   # Modelling framework
+library(corrplot)     # Correlation plots
+library(ranger)       # Random forests
+library(shapviz)      # SHAP visualisation (uses LightGBM's native SHAP engine)
+library(GGally)       # Pair plots
+library(umap)         # UMAP
+library(dbscan)       # HDBSCAN
+library(viridis)      # Colour palettes
+library(ggrepel)      # Label repulsion
+library(lightgbm)     # LightGBM engine
+library(bonsai)       # tidymodels <-> LightGBM bridge
+```
+
+### Setting the project root
+
+The `here` package figures out where the **project root** is (the folder that
+contains the `.Rproj` file or a `.here` file). Every file path in this notebook
+uses `here()` so it works no matter which folder you opened RStudio from.
+
+```{r}
+#| label: check-root
+
+# This should print the top-level folder of the workshop repository
+here::here()
+```
+
+::: {.callout-note}
+## Why `here()`?
+A very common error when starting with R is
+*"cannot open file '../data/individuals.csv': No such file or directory"*.
+This happens when your *working directory* is not where R expects it to be.
+`here()` solves this by always building paths relative to the project root,
+regardless of where you run the code from.
+:::
+
+
+## Data loading and merging
+
+We have three CSV files in the `data/` folder:
+
+| File                | What it contains |
+|---------------------|------------------|
+| `individuals.csv`   | One row per person: age, sex, occupation, lifestyle and health variables |
+| `locations.csv`     | One row per location: population density, average income and wealth |
+| `families.csv`      | Links each person to a family and that family's income |
+
+```{r}
+#| label: load-data
+
+df_ind <- read_csv(here("data", "individuals.csv"))
+df_loc <- read_csv(here("data", "locations.csv"))
+df_fam <- read_csv(here("data", "families.csv"))
+```
+
+We merge (join) these three tables into a single data frame so that every row
+contains *all* information about one individual: their personal attributes, the
+characteristics of the location they live in, and their family income.
+
+```{r}
+#| label: merge-data
+
+df <- df_ind |>
+  left_join(df_loc, by = "Location") |>
+  left_join(df_fam, by = "Person ID")
+```
+
+A `left_join` keeps every row from the left table (`df_ind`) and attaches
+matching columns from the right table. If a person's location or family ID does
+not appear in the lookup table the cells will be filled with `NA`.
+
+Let us take a first look at the merged data. `skim()` gives a rich summary
+with counts of missing values, means, histograms, etc.
+
+> **Question for reflection:** How many rows and columns does the merged dataset
+> have? Are there any missing values?
+
+```{r}
+#| label: inspect-data
+
+glimpse(df)
+skim(df)
+```
+
+
+## Exploratory Data Analysis (EDA)
+
+Before building any model it is crucial to *look* at the data. We use **pair
+plots** to visualise distributions (on the diagonal) and bivariate relationships
+(off the diagonal) for each dataset.
+
+### Pair plots
+
+> **What to look for:**
+>
+> - Are some variables clearly correlated (e.g. a rising cloud of points)?
+> - Do any distributions look skewed or have unusual peaks?
+> - Do categorical variables (like *Sex* or *Occupation*) show different patterns
+>   for different groups?
+
+```{r}
+#| label: pairplot-individuals
+#| fig-width: 10
+#| fig-height: 10
+
+GGally::ggpairs(
+  df_ind,
+  progress = FALSE,
+  title = "Pairplot of Individual-Level Features"
+)
+```
+
+```{r}
+#| label: pairplot-locations
+#| fig-width: 8
+#| fig-height: 8
+
+GGally::ggpairs(
+  df_loc,
+  progress = FALSE,
+  title = "Pairplot of Location-Level Features"
+)
+```
+
+### Unique values in categorical columns
+
+```{r}
+#| label: unique-values
+
+df |>
+  select(where(is.character)) |>
+  map(unique)
+```
+
+
+## Data preprocessing: encoding
+
+Analyses using computational models require us to map our data and concepts into
+numbers in a way that we can represent meaningful differences between observations.
+We therefore need to convert categorical variables (like *Sex* or *Occupation*)
+into numeric columns. A common approach is **one-hot encoding**: each category
+becomes its own 0/1 column. This is sometimes done under the hood when using
+statistical models, but here we do it explicitly so we can make sure that
+different categories are numerically differentiated.
+
+We use a tidymodels **recipe** -- a reusable set of preprocessing instructions:
+
+```{r}
+#| label: encode-data
+
+rec <- recipe(`Sleep problems` ~ ., data = df) |>
+  # Make the target a factor so tidymodels treats this as classification
+  step_mutate(`Sleep problems` = factor(`Sleep problems`)) |>
+  # Remove ID columns and the raw Location name (its features are already merged in)
+  step_rm(`Person ID`, `Family ID`, Location) |>
+  # One-hot encode every remaining categorical predictor;
+  # one_hot = FALSE (default) automatically drops one level per variable
+  # to avoid multicollinearity -- equivalent to drop_first=True in Python
+  step_dummy(all_nominal_predictors(), one_hot = FALSE)
+
+# prep() learns the encoding from the data; bake() applies it
+data_encoded <- rec |>
+  prep() |>
+  bake(new_data = NULL)
+```
+
+::: {.callout-tip}
+## What is multicollinearity?
+If we keep *both* `Sex_F` and `Sex_M` columns, one is a perfect linear function
+of the other (`Sex_M = 1 - Sex_F`). Some algorithms struggle with such
+redundancy, so we drop one. Using `one_hot = FALSE` in `step_dummy()` handles
+this automatically by dropping the first level of each categorical variable.
+:::
+
+```{r}
+#| label: inspect-encoded
+
+skim(data_encoded)
+glimpse(data_encoded)
+```
+
+
+## Visualising the encoded data
+
+### Feature heatmap
+
+A heatmap lets us see all **1 000 individuals x features** at a glance. We
+*scale* every column to zero mean and unit variance first so that features with
+different units (e.g. age in years vs. BMI) are visually comparable.
+
+```{r}
+#| label: heatmap
+#| fig-width: 10
+#| fig-height: 8
+
+data_encoded |>
+  select(-`Sleep problems`) |>
+  scale() |>
+  as.matrix() |>
+  heatmap(
+    Colv = NA, Rowv = NA,
+    col  = viridis::viridis(100),
+    main = "Scaled Feature Heatmap",
+    margins = c(5, 10)
+  )
+```
+
+### Correlation plot
+
+Next we look at **Spearman correlations** between features. This metric is
+robust to non-linear relationships and outliers.
+
+> **What to look for:** Clusters of strongly correlated features may represent
+> related concepts or potential *interactions*. However, such correlations
+> can be overinterpreted, they do not necessarily imply a causal relationship, and may
+> be driven by confounding variables or data artifacts.
+
+
+## Unsupervised learning: clustering {#sec-clustering}
+
+Clustering tries to find **natural groupings** in the data without using any
+outcome variable. We will try two very different approaches:
+
+| Method | Key idea |
+|--------|----------|
+| **K-means** | Partition the data into exactly *k* spherical clusters of similar size |
+| **HDBSCAN** | Find clusters of *varying* shape and density; can label points as "noise" |
+
+```{r}
+#| label: seed-clustering
+
+set.seed(2026) # Ensures results are reproducible
+features_for_clustering <- data_encoded |> select(-`Sleep problems`)
+```
+
+### K-means clustering
+
+K-means needs us to choose the number of clusters in advance. Here we set
+`k = 3` as a starting point. 
+
+> Assessing how many clusters to choose is one of the biggest challenges in unsupervised learning.
+> In practice one would try to assess by different methods such as an **elbow plot** or
+> **silhouette score** to pick *k*.
+
+```{r}
+#| label: kmeans
+
+km_model <- kmeans(
+  scale(features_for_clustering), # Scaling is critical -- otherwise features
+  centers = 3,                    #   measured in large units dominate the distance
+  nstart  = 25                    # Try 25 random starting configurations
+)
+```
+
+#### Visualising clusters with PCA
+
+Our data has many columns. To *plot* the clusters in 2-D we project them onto the
+first two **principal components (PCs)** -- the two directions that capture the
+most variance.
+
+```{r}
+#| label: pca
+
+pca_res_km <- prcomp(features_for_clustering, scale. = TRUE)
+
+pca_variance <- pca_res_km$sdev^2
+prop_var      <- pca_variance / sum(pca_variance)
+cum_var       <- cumsum(prop_var)
+
+tibble(
+  PC = seq_along(prop_var),
+  `Variance explained` = prop_var,
+  `Cumulative variance` = cum_var
+) |>
+  head(10) |>
+  print()
+```
+
+Now we overlay the K-means cluster labels and the **loading arrows** (which show
+how each original feature contributes to the principal components):
+
+```{r}
+#| label: kmeans-pca-plot
+#| fig-width: 10
+#| fig-height: 8
+
+# PC scores + cluster labels
+pca_df_km <- as_tibble(pca_res_km$x[, 1:2]) |>
+  mutate(cluster = factor(km_model$cluster))
+
+# Loading vectors
+loadings_data <- as_tibble(pca_res_km$rotation[, 1:2], rownames = "Variable") |>
+  rename(PC1_loading = PC1, PC2_loading = PC2)
+
+# Axis labels showing % variance explained
+pc1_lab <- sprintf("PC1 (%.1f%% variance)", prop_var[1] * 100)
+pc2_lab <- sprintf("PC2 (%.1f%% variance)", prop_var[2] * 100)
+
+# Scale loading arrows so they are visible on the score plot
+plot_diag <- sqrt(diff(range(pca_df_km$PC1))^2 + diff(range(pca_df_km$PC2))^2)
+max_load  <- max(sqrt(loadings_data$PC1_loading^2 + loadings_data$PC2_loading^2))
+scale_f   <- if (max_load > 1e-6) (plot_diag * 0.35) / max_load else 1
+
+ggplot(pca_df_km, aes(x = PC1, y = PC2)) +
+  geom_point(aes(colour = cluster), alpha = 0.6, size = 2) +
+  geom_segment(
+    data = loadings_data,
+    aes(x = 0, y = 0,
+        xend = PC1_loading * scale_f,
+        yend = PC2_loading * scale_f),
+    arrow     = arrow(length = unit(0.2, "cm")),
+    colour    = "grey20",
+    linewidth = 0.6,
+    inherit.aes = FALSE
+  ) +
+  ggrepel::geom_text_repel(
+    data = loadings_data,
+    aes(x = PC1_loading * scale_f * 1.1,
+        y = PC2_loading * scale_f * 1.1,
+        label = Variable),
+    colour = "grey10", size = 3,
+    inherit.aes = FALSE,
+    max.overlaps = Inf
+  ) +
+  labs(
+    title  = "K-means Clusters with PCA Loadings (PC1 vs PC2)",
+    x      = pc1_lab,
+    y      = pc2_lab,
+    colour = "Cluster"
+  ) +
+  theme_minimal(base_size = 12) +
+  coord_fixed() +
+  scale_colour_viridis_d(option = "C")
+```
+
+> **How to read this plot:**
+>
+> - Each **point** is a person, coloured by their cluster.
+> - The **arrows** show which features drive the separation. Longer arrows =
+>   more influential features. Arrows pointing in the same direction are
+>   positively correlated on these components.
+> - `coord_fixed()` makes the aspect ratio 1:1, which is important so distances
+>   are not visually distorted.
+
+
+### HDBSCAN clustering
+
+HDBSCAN does not require us to choose the number of clusters. Instead, it finds
+dense regions and labels sparse points as **noise** (cluster 0).
+
+Before running HDBSCAN we reduce dimensionality with **UMAP** (Uniform Manifold
+Approximation and Projection), which preserves local neighbourhood structure
+better than PCA and works well as input for density-based clustering.
+
+::: {.callout-note}
+## Why UMAP before HDBSCAN?
+Density-based methods like HDBSCAN struggle in high-dimensional spaces — a
+phenomenon known as the **curse of dimensionality**. As the number of dimensions
+grows, distances between points become increasingly uniform, making it hard to
+distinguish "dense" from "sparse" regions. UMAP compresses the data into a
+low-dimensional (2-D) embedding while preserving local neighbourhood structure,
+giving HDBSCAN a cleaner, more meaningful distance landscape to work with.
+:::
+
+```{r}
+#| label: umap-hdbscan
+#| fig-width: 9
+#| fig-height: 7
+
+# UMAP reduction to 2-D
+umap_res <- umap::umap(
+  scale(features_for_clustering),
+  n_neighbors  = 15,
+  min_dist     = 0.1,
+  random_state = 2025
+)
+
+umap_df <- as_tibble(umap_res$layout, .name_repair = "minimal") |>
+  setNames(c("UMAP1", "UMAP2"))
+
+# HDBSCAN -- minPts controls the minimum cluster size
+hdb_clusters <- dbscan::hdbscan(umap_df, minPts = 10)
+umap_df$cluster <- factor(hdb_clusters$cluster)
+
+cat("Clusters found (excl. noise):",
+    length(unique(hdb_clusters$cluster[hdb_clusters$cluster != 0])), "\n")
+cat("Noise points (cluster 0):", sum(hdb_clusters$cluster == 0), "\n")
+
+ggplot(umap_df, aes(x = UMAP1, y = UMAP2, colour = cluster)) +
+  geom_point(size = 1.5, alpha = 0.7) +
+  labs(
+    title  = "HDBSCAN Clusters on UMAP Embedding",
+    x      = "UMAP Dimension 1",
+    y      = "UMAP Dimension 2",
+    colour = "Cluster"
+  ) +
+  theme_minimal() +
+  scale_colour_viridis_d(option = "D")
+```
+
+> **K-means vs HDBSCAN:** K-means always assigns every point to a cluster and
+> assumes roughly spherical clusters of similar size. HDBSCAN can discover
+> irregularly shaped clusters and exposes when a point does not belong
+> anywhere (noise). Try changing `minPts` and see how the results change!
+
+### Summary statistics by cluster
+
+To **interpret** the clusters we go back to the original (unencoded) variables
+and compute summary statistics within each cluster.
+
+> **Question for reflection:** Do the clusters correspond to recognisable
+> subpopulations? For example, do some clusters have higher stress, lower
+> physical activity, or more sleep problems?
+
+```{r}
+#| label: cluster-summaries
+
+df_with_clusters <- df |>
+  mutate(cluster_hdbscan = factor(hdb_clusters$cluster))
+
+valid_clusters <- df_with_clusters |>
+  filter(cluster_hdbscan != 0)
+
+if (nrow(valid_clusters) > 0) {
+  top_ids <- valid_clusters |>
+    count(cluster_hdbscan, sort = TRUE) |>
+    slice_head(n = 5) |>
+    pull(cluster_hdbscan)
+
+  for (cid in top_ids) {
+    cat("\n--- HDBSCAN Cluster", as.character(cid),
+        "(n =", sum(valid_clusters$cluster_hdbscan == cid), ") ---\n")
+    valid_clusters |>
+      filter(cluster_hdbscan == cid) |>
+      select(-cluster_hdbscan) |>
+      skim() |>
+      print()
+  }
+} else {
+  cat("No valid (non-noise) HDBSCAN clusters found.\n")
+}
+```
+
+
+## Supervised learning: predicting sleep problems {#sec-supervised}
+
+So far we have explored the data without a specific labels/outcome. Now we switch to
+**supervised learning**: we ask the model to predict whether an individual has
+**sleep problems** (0 = no, 1 = yes) from all other features.
+
+### Train/test split
+
+We split the data randomly into a **training set** (80 %) used to fit the model and a
+**test set** (20 %) used to evaluate it. Stratifying on the outcome ensures that
+the proportion of sleep problems is similar in both sets.
+
+```{r}
+#| label: train-test-split
+
+set.seed(2025)
+split      <- initial_split(data_encoded, prop = 0.80, strata = `Sleep problems`)
+train_data <- training(split)
+test_data  <- testing(split)
+
+cat("Training set:", nrow(train_data), "rows\n")
+cat("Test set:    ", nrow(test_data), "rows\n")
+```
+
+### Training a LightGBM model
+
+[LightGBM](https://lightgbm.readthedocs.io/) is a gradient-boosting framework
+that builds an ensemble of decision trees sequentially, each one correcting the
+errors of the previous one. It is fast, handles missing values natively, and
+works well with tabular data.
+We use the `bonsai` package so that LightGBM plugs neatly into the tidymodels workflow.
+
+::: {.callout-note}
+## LightGBM and categorical features
+One-hot encoding is a fundamental concept worth understanding, but advanced
+tree-based models like LightGBM can natively handle raw categorical columns
+without any manual encoding. In a production workflow you could pass `Occupation`
+and `Sex` directly and use the `categorical_feature` engine argument, letting the
+model find the optimal splits internally.
+:::
+
+```{r}
+#| label: train-lgbm
+
+lgbm_spec <- boost_tree(
+  mode  = "classification",
+  trees = 100  # Number of boosting rounds
+) |>
+  set_engine("lightgbm", seed = 2025)
+
+wf <- workflow() |>
+  add_model(lgbm_spec) |>
+  add_formula(`Sleep problems` ~ .)
+
+lgbm_fit <- wf |> fit(data = train_data)
+```
+
+### Evaluating the model
+
+We predict on the held-out test set and compute several **classification
+metrics**:
+
+| Metric | What it tells you |
+|--------|-------------------|
+| **Accuracy** | Overall fraction of correct predictions |
+| **ROC AUC** | How well the model ranks positive cases above negative ones (1 = perfect) |
+| **Sensitivity** (recall) | Fraction of actual positives correctly identified |
+| **Specificity** | Fraction of actual negatives correctly identified |
+| **PR AUC** | Area under the precision-recall curve (useful with imbalanced classes, aka low number of cases) |
+
+> **Question for reflection:** Is accuracy alone a good metric here? What if
+> only 10 % of people have sleep problems -- could a model that always predicts
+> "no" still reach 90 % accuracy?
+
+```{r}
+#| label: evaluate-lgbm
+
+preds_df <- lgbm_fit |>
+  predict(test_data, type = "prob") |>
+  bind_cols(predict(lgbm_fit, test_data)) |>
+  bind_cols(test_data |> select(`Sleep problems`))
+
+positive_level <- levels(train_data$`Sleep problems`)[2]
+prob_col       <- paste0(".pred_", positive_level)
+
+# Majority-class baseline accuracy (context for the model's accuracy)
+baseline_acc <- max(mean(train_data$`Sleep problems` == levels(train_data$`Sleep problems`)[1]),
+                    mean(train_data$`Sleep problems` == levels(train_data$`Sleep problems`)[2]))
+cat(sprintf("Baseline Accuracy (majority class): %.3f\n", baseline_acc))
+
+classification_metrics <- metric_set(
+  accuracy, roc_auc, sensitivity, specificity, pr_auc
+)
+
+eval_results <- preds_df |>
+  classification_metrics(
+    truth       = `Sleep problems`,
+    estimate    = .pred_class,
+    !!sym(prob_col),
+    event_level = "second"
+  )
+
+print(eval_results)
+```
+
+### Confusion matrix
+
+The **confusion matrix** shows the counts of true positives, true negatives,
+false positives and false negatives in a 2x2 table.
+
+```{r}
+#| label: confusion-matrix
+#| fig-width: 6
+#| fig-height: 5
+
+conf_mat_res <- conf_mat(preds_df, truth = `Sleep problems`, estimate = .pred_class)
+print(conf_mat_res)
+
+autoplot(conf_mat_res, type = "heatmap") +
+  labs(title = "Confusion Matrix -- Sleep Problems (LightGBM)") +
+  theme_minimal()
+```
+
+
+## A linear baseline: logistic regression {#sec-logistic}
+
+Before diving into SHAP, we train a **logistic regression** as a linear
+baseline. This model assumes that risk factors combine *additively* and *linearly* on the log-odds
+scale. In a truly complex system — where variables interact non-linearly and
+effects depend on context — that assumption may not hold. Comparing the linear
+model against LightGBM reveals how much is lost (or gained) by relaxing the
+linearity constraint.
+
+We add a `step_normalize()` to the recipe so that all coefficients are on a
+comparable scale: each one represents the change in log-odds per **standard
+deviation** of the feature.
+
+```{r}
+#| label: train-lr
+
+lr_rec <- recipe(`Sleep problems` ~ ., data = train_data)
+
+lr_spec <- logistic_reg() |>
+  set_engine("glm")
+
+lr_wf <- workflow() |>
+  add_recipe(lr_rec) |>
+  add_model(lr_spec)
+
+lr_fit <- lr_wf |> fit(data = train_data)
+```
+
+### Head-to-head performance comparison
+
+The table below puts both models side by side on the same test set.
+
+> **Question for reflection:** How much does the non-linear LightGBM model
+> outperform the linear logistic regression? A large gap suggests the data
+> contains important **interactions or non-linearities** that a linear model
+> cannot capture — a hallmark of complex systems. A small gap suggests the
+> relationship is largely additive and linear.
+
+```{r}
+#| label: compare-models
+
+lr_preds_df <- lr_fit |>
+  predict(test_data, type = "prob") |>
+  bind_cols(predict(lr_fit, test_data)) |>
+  bind_cols(test_data |> select(`Sleep problems`))
+
+lr_prob_col <- paste0(".pred_", positive_level)
+
+lr_eval <- lr_preds_df |>
+  metric_set(accuracy, roc_auc, pr_auc)(
+    truth       = `Sleep problems`,
+    estimate    = .pred_class,
+    !!sym(lr_prob_col),
+    event_level = "second"
+  ) |>
+  mutate(model = "Logistic Regression")
+
+lgbm_eval_sub <- eval_results |>
+  filter(.metric %in% c("accuracy", "roc_auc", "pr_auc")) |>
+  mutate(model = "LightGBM")
+
+comparison_df <- bind_rows(lr_eval, lgbm_eval_sub) |>
+  select(model, .metric, .estimate) |>
+  tidyr::pivot_wider(names_from = .metric, values_from = .estimate)
+
+print(comparison_df)
+```
+
+## Model explainability: SHAP values {#sec-shap}
+
+A model that predicts well could be useful but more interesting is to know
+what the model learned from the data. Traditional statistical models (like logistic regression)
+have coefficients that are based on the mean effect of each feature across the whole dataset.
+SHAP (SHapley Additive exPlanations) can help us decompose the contributions of each feature,
+and for each individual prediction, based on the idea of Shapley values from cooperative game theory.
+
+- A **positive** SHAP value for a feature means it *pushes the prediction
+  towards* sleep problems for that person.
+- A **negative** SHAP value means it *pushes the prediction away from* sleep
+  problems.
+
+### Computing SHAP values
+
+```{r}
+#| label: compute-shap
+
+actual_lgbm_model <- lgbm_fit |>
+  extract_fit_parsnip() |>
+  (\(x) x$fit)()  # Extract the underlying lgb.Booster object
+
+X_pred_shap <- test_data |>
+  select(-`Sleep problems`) |>
+  as.data.frame()
+
+sv <- shapviz::shapviz(
+  actual_lgbm_model,
+  X_pred = data.matrix(X_pred_shap),
+  X      = X_pred_shap
+)
+```
+
+### Global feature importance
+
+The **bar plot** shows the mean absolute SHAP value for each feature -- a measure
+of that feature's overall importance across all individuals in the test set.
+
+```{r}
+#| label: shap-bar
+#| fig-width: 8
+#| fig-height: 6
+
+sv_importance(sv, kind = "bar", max_display = 15) +
+  ggtitle("Global Feature Importance (Mean |SHAP|)") +
+  theme_minimal(base_size = 10)
+```
+
+### SHAP beeswarm plot
+
+The **beeswarm** plot goes one step further. Each dot is one individual. The
+horizontal position shows the SHAP value (how much the feature pushed the
+prediction) and the colour shows the feature's *actual value* (red = high,
+blue = low).
+
+```{r}
+#| label: shap-beeswarm
+#| fig-width: 8
+#| fig-height: 6
+
+sv_importance(sv, kind = "beeswarm", max_display = 15) +
+  ggtitle("SHAP Summary (Beeswarm) -- LightGBM") +
+  theme_minimal(base_size = 10)
+```
+
+> **How to read the beeswarm:** If a feature shows red dots on the right and
+> blue dots on the left, then *higher values of that feature increase the
+> predicted risk of sleep problems*. The reverse pattern means higher values are
+> protective.
+
+### Logistic regression coefficients vs LightGBM SHAP values
+
+Now we can directly compare what the two models have learned about feature
+importance.
+
+- **LR coefficients** (standardised) tell us the *average*, *linear* log-odds
+  contribution of each feature, assuming all others are held constant.
+- **Mean |SHAP|** values tell us the *average magnitude* of each feature's
+  contribution to the LightGBM predictions — capturing non-linear and interaction
+  effects as well.
+
+Features that rank similarly in both views are robustly important regardless of
+modelling assumptions. Features that rank very differently hint at
+**non-linearities or interactions** that the linear model misses — a key
+signature of complex systems.
+
+```{r}
+#| label: shap-vs-lr
+#| fig-width: 13
+#| fig-height: 7
+
+# Mean absolute SHAP per feature (LightGBM)
+shap_imp <- colMeans(abs(sv$S)) |>
+  tibble::enframe(name = "term", value = "mean_abs_shap")
+
+# Standardised LR coefficients (absolute value for magnitude)
+lr_coefs <- lr_fit |>
+  broom::tidy() |>
+  filter(term != "(Intercept)") |>
+  mutate(
+    term = stringr::str_replace_all(term, "`", ""),
+    abs_coef = abs(estimate)
+  ) |>
+  select(term, abs_coef)
+
+# Join and sort by SHAP importance
+compare_imp <- shap_imp |>
+  left_join(lr_coefs, by = "term") |>
+  tidyr::replace_na(list(abs_coef = 0)) |>
+  arrange(desc(mean_abs_shap))
+
+# Show the table
+print(compare_imp)
+```
+
+> **What to look for:**
+>
+> - Features near the **top of both panels** are important under both linear and
+>   non-linear assumptions — these are your most reliable signals.
+> - Features that appear only in the **SHAP panel** (high SHAP, low LR
+>   coefficient) are likely involved in **interactions or threshold effects** that
+>   the logistic model cannot represent.
+> - Features that appear only in the **LR panel** may have a consistent additive
+>   effect that the tree model spreads across correlated features.
+
+### SHAP dependence plots
+
+A dependence plot zooms in on **one feature** and shows exactly how its value
+relates to its SHAP contribution. A second feature is used for colour to reveal
+**interactions**.
+
+> **Try it yourself:** Replace `"Physical Activity Level"` or `"Stress Levels"`
+> with another feature name (run `colnames(X_pred_shap)` to see all options) and
+> explore different interactions.
+
+```{r}
+#| label: shap-dependence
+#| fig-width: 8
+#| fig-height: 5
+
+# Helper: safely create a dependence plot, skipping if a column is missing
+plot_shap_dep <- function(sv_obj, feature, color_var = NULL, data_cols) {
+  if (!(feature %in% data_cols)) {
+    cat("Skipping:", feature, "not found in prediction data.\n")
+    return(invisible(NULL))
+  }
+  if (!is.null(color_var) && !(color_var %in% data_cols)) {
+    cat("Warning:", color_var, "not found; plotting without colour.\n")
+    color_var <- NULL
+  }
+  title <- paste0("SHAP Dependence: ", feature)
+  if (!is.null(color_var)) title <- paste0(title, " (colour: ", color_var, ")")
+
+  sv_dependence(sv_obj, v = feature, color_var = color_var) +
+    ggtitle(title) +
+    theme_minimal(base_size = 10)
+}
+
+plot_shap_dep(sv, "Physical Activity Level", "Age", colnames(X_pred_shap))
+plot_shap_dep(sv, "Stress Levels", "Age", colnames(X_pred_shap))
+```
+
+
+## Wrapping up
+
+In this workshop you have:
+
+- **Loaded and merged** three related datasets.
+- **Explored** variable distributions and correlations.
+- **Discovered subgroups** using K-means and HDBSCAN clustering.
+- **Predicted sleep problems** with a LightGBM model.
+- **Benchmarked** it against a logistic regression and compared their
+  performance and what each model "learned" about feature importance.
+- **Explained** the model's predictions using SHAP values.
+
+### Ideas for further exploration
+
+- Change the number of clusters in K-means (`centers = ?`) or the density
+  threshold in HDBSCAN (`minPts = ?`). How do the results change?
+- Try predicting a different outcome (e.g. `Depressive symptoms` instead of
+  `Sleep problems`).
+- Add or remove features from the model -- does performance improve?
+- Look at individual SHAP values for specific people in the test set to
+  understand *their* prediction.
