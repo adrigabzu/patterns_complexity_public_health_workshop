@@ -113,8 +113,8 @@ uses `here()` so it works no matter which folder you opened RStudio from.
 ```{r}
 #| label: check-root
 
-# This should print the top-level folder of the workshop repository
-here::here()
+# This should locate the files
+here::i_am("quarto_patterns/discovering_patterns.qmd")
 ```
 
 ::: {.callout-note}
