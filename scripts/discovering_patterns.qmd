@@ -114,7 +114,7 @@ uses `here()` so it works no matter which folder you opened RStudio from.
 #| label: check-root
 
 # This should help locate the data files
-here::i_am("quarto_patterns/discovering_patterns.qmd")
+here::here()
 ```
 
 ::: {.callout-note}
@@ -307,6 +307,22 @@ robust to non-linear relationships and outliers.
 > can be overinterpreted, they do not necessarily imply a causal relationship, and may
 > be driven by confounding variables or data artifacts.
 
+```{r}
+#| label: corrplot
+#| fig-width: 10
+#| fig-height: 8
+
+cor_matrix <- cor(data_encoded |> select(-`Sleep problems`), method = "spearman")
+corrplot::corrplot(
+  cor_matrix,
+  method = "color",
+  type = "upper",
+  tl.cex = 0.7,
+  tl.col = "black",
+  title = "Spearman Correlation Matrix"
+)
+
+```
 
 ## Unsupervised learning: clustering {#sec-clustering}
 
@@ -516,7 +532,7 @@ valid_clusters <- df_with_clusters |>
 if (nrow(valid_clusters) > 0) {
   top_ids <- valid_clusters |>
     count(cluster_hdbscan, sort = TRUE) |>
-    slice_head(n = 5) |>
+    slice_head(n = 10) |>
     pull(cluster_hdbscan)
 
   for (cid in top_ids) {
