@@ -36,13 +36,14 @@ Alternatives that also work well:
 │   ├── individuals.csv   # 1000 synthetic individuals 
 │   ├── families.csv      # Links individuals to families and family income
 │   └── locations.csv     # 10 synthetic locations and their parameters
-├── results/              # Plots and other output are saved here
-└── scripts/
-    ├── discovering_patterns.qmd    # R Quarto notebook (recommended for R users to run cell by cell)
-    ├── discovering_patterns.py     # Python script (run cell-by-cell in VS Code or Positron)
-    ├── discovering_patterns.ipynb  # Jupyter notebook version of the Python script
-    ├── patterns_env.yml            # Conda environment specification for Python dependencies
-    └── requirements.txt            # pip dependencies
+├── scripts/
+│   ├── discovering_patterns.qmd    # R Quarto notebook (recommended for R users to run cell by cell)
+│   ├── discovering_patterns.py     # Python script (run cell-by-cell in VS Code or Positron)
+│   ├── discovering_patterns.ipynb  # Jupyter notebook version of the Python script
+│   ├── patterns_env.yml            # Conda environment specification for Python dependencies
+│   └── requirements.txt            # pip dependencies
+└── reflection_guide.md    # Guide for students to follow the coding exercise
+
 ```
 
 ### Dataset descriptions
